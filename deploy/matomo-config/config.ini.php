@@ -9,6 +9,11 @@ tables_prefix = "matomo_"
 adapter = "MYSQLI"
 charset = "utf8mb4"
 
+enable_ssl = 1
+ssl_ca = /etc/mysql/matomo/ca.crt
+ssl_cert = /etc/mysql/matomo/tls.crt
+ssl_key = /etc/mysql/matomo/tls.key
+
 [General]
 salt = "681b187784d89c00366e13f16990283a"
 trusted_hosts[] = "matomo01.ramsalt.com"
