@@ -5,22 +5,37 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  say-hello:
+  deploy:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
       - image: cimg/base:stable
+        environment:
+          MATOMO_VERSION: "4.8.0"
+          MATOMO_HOSTS: "matomo01.ovh.ramsalt.com"
+          MATOMO_OWNER: "matomo"
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - 92:5c:df:be:d2:88:96:59:b9:c3:07:e4:fa:3b:5a:96
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+          name: "Prepare node ssh keys"
+          command: ssh-keyscan -H ${MATOMO_HOSTS} >> ~/.ssh/known_hosts
+
+      - run:
+          name: "Copy to destination nodes"
+          command: for s in ${MATOMO_HOSTS}; do scp -r deploy/* ${MATOMO_OWNER}@${s}:; done
+
+      - run:
+          name: "Run deployment script"
+          command: for s in ${MATOMO_HOSTS}; do ssh ${MATOMO_OWNER}@${s} "bin/deploy.sh ${MATOMO_VERSION}"; done
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  deploy-workflow:
     jobs:
-      - say-hello
+      - deploy
