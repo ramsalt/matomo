@@ -10,6 +10,8 @@ fi
 
 NGINX_CONF="/etc/nginx/conf.d/default.conf"
 PHP_CONF="/etc/php/8.1/fpm/pool.d/www.conf"
+MATOMO_CONF="/srv/www/matomo/matomo/config/config.ini.php"
+
 RELOAD_NGINX=0
 RELOAD_PHP=0
 
@@ -31,9 +33,16 @@ fi
 curl -Sso matomo.tar.gz "${MATOMO_URL}/matomo-${MATOMO_VERSION}.tar.gz"
 tar xzf matomo.tar.gz
 
-chgrp www-data matomo/tmp matomo/config matomo/matomo.js
+# Update matomo configuration
+if ! diff -q matomo-config/config.ini.php "${MATOMO_CONF}" >/dev/null ; then
+ cp matomo-config/config.ini.php "${MATOMO_CONF}"
+ RELOAD_PHP=1
+fi
+
+chgrp www-data matomo/tmp matomo/config matomo/matomo.js matomo/config/config.ini.php
 chmod 775 matomo/tmp matomo/config
 chmod 664 matomo/matomo.js
+chmod 664 matomo/config/config.ini.php
 
 [ "${RELOAD_PHP}" -eq "0" ] || sudo /bin/systemctl reload php8.1-fpm
 [ "${RELOAD_NGINX}" -eq "0" ] || sudo /bin/systemctl reload nginx
