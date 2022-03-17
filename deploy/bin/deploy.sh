@@ -31,8 +31,9 @@ fi
 curl -Sso matomo.tar.gz "${MATOMO_URL}/matomo-${MATOMO_VERSION}.tar.gz"
 tar xzf matomo.tar.gz
 
-chgrp www-data matomo/tmp
-chmod 775 matomo/tmp
+chgrp www-data matomo/tmp matomo/config matomo/matomo.js
+chmod 775 matomo/tmp matomo/config
+chmod 664 matomo/matomo.js
 
 [ "${RELOAD_PHP}" -ne "0" ] && sudo /bin/systemctl reload php8.1-fpm
 [ "${RELOAD_NGINX}" -ne "0" ] && sudo /bin/systemctl reload nginx
