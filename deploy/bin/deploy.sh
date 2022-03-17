@@ -1,6 +1,5 @@
 #!/bin/bash
 set -euo pipefail
-set -x
 
 MATOMO_VERSION="${1:-}"
 
@@ -36,5 +35,5 @@ chgrp www-data matomo/tmp matomo/config matomo/matomo.js
 chmod 775 matomo/tmp matomo/config
 chmod 664 matomo/matomo.js
 
-[ "${RELOAD_PHP}" -ne "0" ] && sudo /bin/systemctl reload php8.1-fpm
-[ "${RELOAD_NGINX}" -ne "0" ] && sudo /bin/systemctl reload nginx
+[ "${RELOAD_PHP}" -eq "0" ] || sudo /bin/systemctl reload php8.1-fpm
+[ "${RELOAD_NGINX}" -eq "0" ] || sudo /bin/systemctl reload nginx
