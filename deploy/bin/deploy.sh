@@ -42,10 +42,21 @@ if ! diff -q matomo-config/config.ini.php "${MATOMO_CONF}" >/dev/null ; then
     RELOAD_PHP=1
 fi
 
-chgrp www-data matomo/tmp matomo/config matomo/matomo.js matomo/config/config.ini.php
-chmod 775 matomo/tmp matomo/config
-chmod 664 matomo/matomo.js
-chmod 664 matomo/config/config.ini.php
+chgrp www-data \
+    matomo/tmp \
+    matomo/config \
+    matomo/misc \
+    matomo/matomo.js \
+    matomo/config/config.ini.php
+
+chmod 775 \
+    matomo/tmp \
+    matomo/config \
+    matomo/misc
+
+chmod 664 \
+    matomo/matomo.js \
+    matomo/config/config.ini.php
 
 [ "${RELOAD_PHP}" -eq "0" ] || sudo /bin/systemctl reload php8.1-fpm
 [ "${RELOAD_NGINX}" -eq "0" ] || sudo /bin/systemctl reload nginx
