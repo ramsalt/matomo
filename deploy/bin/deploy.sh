@@ -19,14 +19,14 @@ MATOMO_URL="https://builds.matomo.org"
 
 # Update nginx confguration
 if ! diff -q nginx/default.conf "${NGINX_CONF}" >/dev/null ; then
- cp nginx/default.conf "${NGINX_CONF}"
- RELOAD_NGINX=1
+    cp nginx/default.conf "${NGINX_CONF}"
+    RELOAD_NGINX=1
 fi
 
 # Update php configuration
 if ! diff -q php/www.conf "${PHP_CONF}" >/dev/null ; then
- cp php/www.conf "${PHP_CONF}"
- RELOAD_PHP=1
+    cp php/www.conf "${PHP_CONF}"
+    RELOAD_PHP=1
 fi
 
 # download and install matomo
@@ -35,8 +35,11 @@ tar xzf matomo.tar.gz
 
 # Update matomo configuration
 if ! diff -q matomo-config/config.ini.php "${MATOMO_CONF}" >/dev/null ; then
- cp matomo-config/config.ini.php "${MATOMO_CONF}"
- RELOAD_PHP=1
+    # remove config created by web frontend so we can write our own
+    find /srv/www/matomo/matomo/config/ -name config.ini.php -user www-data -delete
+
+    cp matomo-config/config.ini.php "${MATOMO_CONF}"
+    RELOAD_PHP=1
 fi
 
 chgrp www-data matomo/tmp matomo/config matomo/matomo.js matomo/config/config.ini.php
