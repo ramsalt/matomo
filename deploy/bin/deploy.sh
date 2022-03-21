@@ -1,6 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
+PHP_VERSION="8.1"
 MATOMO_VERSION="${1:-}"
 
 if [ -z "${MATOMO_VERSION}" ]; then
@@ -9,7 +10,7 @@ if [ -z "${MATOMO_VERSION}" ]; then
 fi
 
 NGINX_CONF="/etc/nginx/conf.d/default.conf"
-PHP_CONF="/etc/php/8.1/fpm/pool.d/www.conf"
+PHP_CONF="/etc/php/${PHP_VERSION}/fpm/pool.d/www.conf"
 MATOMO_CONF="/srv/www/matomo/matomo/config/config.ini.php"
 
 RELOAD_NGINX=0
@@ -85,7 +86,7 @@ function update_file_permissions() {
 
 # Reload services
 function reload_services() {
-    [ "${RELOAD_PHP}" -eq "0" ] || sudo /bin/systemctl reload php8.1-fpm
+    [ "${RELOAD_PHP}" -eq "0" ] || sudo /bin/systemctl reload php${PHP_VERSION}-fpm
     [ "${RELOAD_NGINX}" -eq "0" ] || sudo /bin/systemctl reload nginx
 }
 
