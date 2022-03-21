@@ -21,6 +21,7 @@ MATOMO_URL="https://builds.matomo.org"
 function configure_nginx() {
     if ! diff -q nginx/default.conf "${NGINX_CONF}" >/dev/null ; then
         cp nginx/default.conf "${NGINX_CONF}"
+        sudo /usr/sbin/nginx -t
         RELOAD_NGINX=1
     fi
 }
@@ -29,6 +30,7 @@ function configure_nginx() {
 function configure_php() {
     if ! diff -q php/www.conf "${PHP_CONF}" >/dev/null ; then
         cp php/www.conf "${PHP_CONF}"
+        sudo /usr/sbin/php-fpm${PHP_VERSION} -t
         RELOAD_PHP=1
     fi
 }
