@@ -6,7 +6,6 @@ username = "matomo"
 password = "pheivairai*Ze&lt;o]B7Roh3ar+a_Yea)x"
 dbname = "matomo"
 tables_prefix = "matomo_"
-adapter = "MYSQLI"
 charset = "utf8mb4"
 
 enable_ssl = 1
