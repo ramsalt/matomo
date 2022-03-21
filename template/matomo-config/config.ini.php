@@ -3,7 +3,7 @@
 [database]
 host = "matomodb.ramsalt.com"
 username = "matomo"
-password = "pheivairai*Ze&lt;o]B7Roh3ar+a_Yea)x"
+password = "${MATOMO_MYSQL_PASS}"
 dbname = "matomo"
 tables_prefix = "matomo_"
 charset = "utf8mb4"

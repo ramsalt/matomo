@@ -14,6 +14,7 @@ jobs:
           MATOMO_VERSION: "4.8.0"
           MATOMO_HOSTS: "matomo01.ovh.ramsalt.com"
           MATOMO_OWNER: "matomo"
+          MATOMO_MYSQL_PASS: $MATOMO_MYSQL_PASS
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
@@ -24,6 +25,12 @@ jobs:
       - run:
           name: "Prepare node ssh keys"
           command: ssh-keyscan -H ${MATOMO_HOSTS} >> ~/.ssh/known_hosts
+
+      - run:
+          name: "Prepare matomo configuration"
+          command: |
+            sudo apt-get update && sudo apt-get install -y gettext-base
+            envsubst < template/matomo-config/config.ini.php > deploy/matomo-config/config.ini.php
 
       - run:
           name: "Copy to destination nodes"
