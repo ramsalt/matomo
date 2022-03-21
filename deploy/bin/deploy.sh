@@ -1,5 +1,6 @@
 #!/bin/bash
 set -euo pipefail
+set -x
 
 PHP_VERSION="8.1"
 MATOMO_VERSION="${1:-}"
