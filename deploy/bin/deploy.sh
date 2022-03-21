@@ -46,11 +46,21 @@ if [ ! -f ${PHP_EXT_DIR}/maxminddb.so -o ! -f $PHP_BASE_DIR/fpm/conf.d/*maxmindd
 fi
 
 # download and install matomo
-curl -Sso matomo.tar.gz "${MATOMO_URL}/matomo-${MATOMO_VERSION}.tar.gz"
-tar xzf matomo.tar.gz
+rm -f "matomo-${MATOMO_VERSION}.tar.gz.asc"
+curl -Sso matomo-${MATOMO_VERSION}.tar.gz.asc "${MATOMO_URL}/matomo-${MATOMO_VERSION}.tar.gz.asc"
+
+if ! diff -q "matomo-current.tar.gz.asc" "matomo-${MATOMO_VERSION}.tar.gz.asc" ; then
+    gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys F529A27008477483777FC23D63BB30D0E5D2C749
+
+    curl -Sso matomo.tar.gz "${MATOMO_URL}/matomo-${MATOMO_VERSION}.tar.gz"
+    gpg --verify matomo-${MATOMO_VERSION}.tar.gz.asc matomo.tar.gz
+    tar xzf matomo.tar.gz
+
+    mv "matomo-${MATOMO_VERSION}.tar.gz.asc" "matomo-current.tar.gz.asc"
+fi
 
 # Update matomo configuration
-if ! diff -q matomo-config/config.ini.php "${MATOMO_CONF}" >/dev/null ; then
+if ! diff -q "matomo-config/config.ini.php" "${MATOMO_CONF}" >/dev/null ; then
     # remove config created by web frontend so we can write our own
     find /srv/www/matomo/matomo/config/ -name config.ini.php -user www-data -delete
 
