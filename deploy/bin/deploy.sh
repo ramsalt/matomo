@@ -1,6 +1,5 @@
 #!/bin/bash
 set -euo pipefail
-set -x
 
 PHP_VERSION="8.1"
 MATOMO_VERSION="${1:-}"
@@ -12,7 +11,7 @@ fi
 
 NGINX_CONF="/etc/nginx/conf.d/default.conf"
 PHP_CONF="/etc/php/${PHP_VERSION}/fpm/pool.d/www.conf"
-MATOMO_DIR="/srv/www/matomo/matomo/config/config.ini.php"
+MATOMO_DIR="/srv/www/matomo/matomo"
 MATOMO_CONF="${MATOMO_DIR}/config/config.ini.php"
 
 RELOAD_NGINX=0
