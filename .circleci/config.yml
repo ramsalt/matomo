@@ -31,10 +31,11 @@ jobs:
           command: |
             sudo apt-get update && sudo apt-get install -y gettext-base
             envsubst < template/matomo-config/config.ini.php > deploy/matomo-config/config.ini.php
+            chmod 600 deploy/matomo-config/config.ini.php
 
       - run:
           name: "Copy to destination nodes"
-          command: for s in ${MATOMO_HOSTS}; do scp -r deploy/* ${MATOMO_OWNER}@${s}:; done
+          command: for s in ${MATOMO_HOSTS}; do scp -rp deploy/* ${MATOMO_OWNER}@${s}:; done
 
       - run:
           name: "Run deployment script"

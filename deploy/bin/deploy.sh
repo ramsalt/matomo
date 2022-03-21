@@ -75,7 +75,9 @@ function update_file_permissions() {
         matomo/misc
 
     chmod 664 \
-        matomo/matomo.js \
+        matomo/matomo.js
+
+    chmod 660 \
         matomo/config/config.ini.php
 }
 
