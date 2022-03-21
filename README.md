@@ -15,7 +15,7 @@ All pushes to the `main` branch trigger the deployment in [.circleci/config.yml]
 
 ## Nginx configuration
 
-Nginx configuration is in [deploy/nginx/default.conf](deploy/ngnix/default.conf). As this setup is for a dedicated web server it simply overwrites the default nginx configuration. Each node has local Let's Encrypt certificates configured by Ansible under `/etc/letsencrypt/live/matomo/`.
+Nginx configuration is in [deploy/nginx/default.conf](deploy/nginx/default.conf). As this setup is for a dedicated web server it simply overwrites the default nginx configuration. Each node has local Let's Encrypt certificates configured by Ansible under `/etc/letsencrypt/live/matomo/`.
 
 The configuration is based on [Matomo*s recommmendations](https://github.com/matomo-org/matomo-nginx).
 
@@ -26,3 +26,5 @@ PHP ocnfiguration is in [deploy/php/www.conf](deploy/php/www.conf). Again, this 
 ## Matomo configuration
 
 Matomo configuration is in [template/matomo-config/config.ini.php](template/matomo-config/config.ini.php). The `MATOMO_MYSQL_PASS` environment variable will be replaced by the password configured in CircleCI on deployment.
+
+SSL certificates for encrypted communication with MySQL have been created by Ansible in `/etc/mysql/matomo/`.
