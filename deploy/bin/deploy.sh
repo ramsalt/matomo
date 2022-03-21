@@ -11,7 +11,8 @@ fi
 
 NGINX_CONF="/etc/nginx/conf.d/default.conf"
 PHP_CONF="/etc/php/${PHP_VERSION}/fpm/pool.d/www.conf"
-MATOMO_CONF="/srv/www/matomo/matomo/config/config.ini.php"
+MATOMO_DIR="/srv/www/matomo/matomo/config/config.ini.php"
+MATOMO_CONF="${MATOMO_DIR}/config/config.ini.php"
 
 RELOAD_NGINX=0
 RELOAD_PHP=0
@@ -50,13 +51,17 @@ function install_matomo() {
 
         mv "matomo-${MATOMO_VERSION}.tar.gz.asc" "matomo-current.tar.gz.asc"
     fi
+
+    if [ ! -f ${MATOMO_DIR}/misc/DBIP-City.mmdb ]; then
+        sudo /usr/bin/php ${MATOMO_DIR}/console scheduled-tasks:run "Piwik\\Plugins\\GeoIp2\\GeoIP2AutoUpdater.update"
+    fi
 }
 
 # Update matomo configuration
 function configure_matomo() {
     if ! diff -q "matomo-config/config.ini.php" "${MATOMO_CONF}" >/dev/null ; then
         # remove config created by web frontend so we can write our own
-        find /srv/www/matomo/matomo/config/ -name config.ini.php -user www-data -delete
+        find ${MATOMO_DIR}/config/ -name config.ini.php -user www-data -delete
 
         cp matomo-config/config.ini.php "${MATOMO_CONF}"
         RELOAD_PHP=1
