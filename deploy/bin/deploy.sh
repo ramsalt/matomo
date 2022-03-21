@@ -49,6 +49,8 @@ function install_matomo() {
         gpg --verify matomo-${MATOMO_VERSION}.tar.gz.asc matomo.tar.gz
         tar xzf matomo.tar.gz
 
+        sudo /usr/bin/php /srv/www/matomo/matomo/console core:update --yes
+
         mv "matomo-${MATOMO_VERSION}.tar.gz.asc" "matomo-current.tar.gz.asc"
     fi
 
