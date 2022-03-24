@@ -16,6 +16,9 @@ ssl_key = "/etc/mysql/matomo/tls.key"
 [General]
 salt = "681b187784d89c00366e13f16990283a"
 trusted_hosts[] = "matomo01.ramsalt.com"
+trusted_hosts[] = "matomo02.ramsalt.com"
+trusted_hosts[] = "matomo.ramsalt.com"
+trusted_hosts[] = "bunny.ramsalt.com"
 trusted_hosts[] = "ramsalt.com"
 force_ssl = 1
 assume_secure_protocol = 1
