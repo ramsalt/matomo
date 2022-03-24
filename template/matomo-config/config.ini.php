@@ -19,10 +19,18 @@ trusted_hosts[] = "matomo01.ramsalt.com"
 trusted_hosts[] = "matomo02.ramsalt.com"
 trusted_hosts[] = "matomo.ramsalt.com"
 trusted_hosts[] = "bunny.ramsalt.com"
+trusted_hosts[] = "keycdn.ramsalt.com"
 trusted_hosts[] = "ramsalt.com"
 force_ssl = 1
 assume_secure_protocol = 1
 multi_server_environment = 1
+
+proxy_client_headers[] = HTTP_X_REAL_IP
+proxy_client_headers[] = HTTP_X_FORWARDED_FOR
+proxy_host_headers[] = HTTP_CDN_HOST
+proxy_host_headers[] = HTTP_X_FORWARDED_HOST
+enable_trusted_host_check = 1
+
 
 [PluginsInstalled]
 PluginsInstalled[] = "Diagnostics"
