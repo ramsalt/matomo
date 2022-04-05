@@ -3,7 +3,7 @@
 version: 2.1
 
 jobs:
-  install-ingress-nginx:
+  install:
     steps:
       - checkout
 
@@ -24,12 +24,15 @@ jobs:
           name: "Install ingress-nginx chart"
           command: helm install -n ingress-nginx --values values/ingress-nginx.yaml ingress-nginx/ingress-nginx
 
+orbs:
+  helm: circleci/helm@1.2.0
+
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   deploy-workflow:
     jobs:
-      - install-ingress-nginx:
+      - install:
           filters:
             branches:
               only: matomo-k8s
