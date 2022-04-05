@@ -4,6 +4,9 @@ version: 2.1
 
 jobs:
   install:
+    machine:
+      image: ubuntu-2004:current
+
     steps:
       - checkout
 
