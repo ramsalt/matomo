@@ -14,7 +14,8 @@ jobs:
           name: "Prepare kubeconfig"
           command: |
             mkdir ~/.kube
-            echo "$KUBECONFIG" | base64 -d > ~/.kube/config
+            echo "$KUBECFG" | base64 -d > ~/.kube/config
+            cat ~/.kube/config
 
       - helm/install-helm-client:
           version: v3.8.1
