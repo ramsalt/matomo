@@ -25,7 +25,7 @@ jobs:
 
       - run:
           name: "Install ingress-nginx chart"
-          command: helm install -n ingress-nginx --values values/ingress-nginx.yaml ingress-nginx/ingress-nginx
+          command: helm -n ingress-nginx install ingress-nginx --values values/ingress-nginx.yaml ingress-nginx/ingress-nginx
 
 orbs:
   helm: circleci/helm@1.2.0
