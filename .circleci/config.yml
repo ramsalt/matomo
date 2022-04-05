@@ -2,54 +2,34 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  deploy:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image: cimg/base:stable
-        environment:
-          MATOMO_VERSION: "4.8.0"
-          MATOMO_OWNER: "matomo"
-          MATOMO_MYSQL_PASS: $MATOMO_MYSQL_PASS
-          MATOMO_HOSTS: |
-            matomo01.ovh.ramsalt.com
-            matomo02.ovh.ramsalt.com
-
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+  install-ingress-nginx:
     steps:
       - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - 92:5c:df:be:d2:88:96:59:b9:c3:07:e4:fa:3b:5a:96
-      - run:
-          name: "Prepare node ssh keys"
-          command: ssh-keyscan -H ${MATOMO_HOSTS} >> ~/.ssh/known_hosts
 
       - run:
-          name: "Prepare matomo configuration"
+          name: "Prepare kubeconfig"
           command: |
-            sudo apt-get update && sudo apt-get install -y gettext-base
-            envsubst < template/matomo-config/config.ini.php > deploy/matomo-config/config.ini.php
-            chmod 600 deploy/matomo-config/config.ini.php
+            mkdir ~/.kube
+            echo "$KUBECONFIG" | base64 -d > ~/.kube/config
+
+      - helm/install-helm-client:
+          helm-version: v3.8.1
 
       - run:
-          name: "Copy to destination nodes"
-          command: for s in ${MATOMO_HOSTS}; do scp -rp deploy/* ${MATOMO_OWNER}@${s}:; done
+          name: "Add ingress-nginx repository"
+          command: helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 
       - run:
-          name: "Run deployment script"
-          command: for s in ${MATOMO_HOSTS}; do ssh ${MATOMO_OWNER}@${s} "bin/deploy.sh ${MATOMO_VERSION}"; done
+          name: "Install ingress-nginx chart"
+          command: helm install -n ingress-nginx --values values/ingress-nginx.yaml ingress-nginx/ingress-nginx
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   deploy-workflow:
     jobs:
-      - deploy:
+      - install-ingress-nginx:
           filters:
             branches:
-              only: main
+              only: matomo-k8s

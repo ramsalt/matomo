@@ -48,3 +48,10 @@ Thumbs.db
 *.mov
 *.wmv
 
+# user creation key and certificates
+*.key
+*.csr
+*.crt
+
+
+.envrc
