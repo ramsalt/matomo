@@ -1,0 +1,43 @@
+---
+image:
+  pullPolicy: {{ .Values.image.pullPolicy }}
+
+installCRDs: true
+
+securityContext:
+  fsGroup: 1001
+  runAsUser: 1001
+
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+
+cainjector:
+  image:
+    pullPolicy: {{ .Values.image.pullPolicy }}
+
+  containerSecurityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+      - ALL
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
+
+webhook:
+  image:
+    pullPolicy: {{ .Values.image.pullPolicy }}
+
+  containerSecurityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+      - ALL
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
+
+# vim: sw=2 ts=2 syntax=yaml

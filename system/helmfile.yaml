@@ -1,0 +1,45 @@
+environments:
+  default:
+    values:
+      - ./environments/default.yaml
+    secrets:
+      - ./secrets/external-dns.yaml
+
+helmDefaults:
+  kubeContext: kubernetes-admin@Matomo
+
+repositories:
+  - name: ingress-nginx
+    url: https://kubernetes.github.io/ingress-nginx
+
+  - name: jetstack
+    url: https://charts.jetstack.io
+
+  - name: external-dns
+    url: https://kubernetes-sigs.github.io/external-dns/
+
+releases:
+  - name: namespaces
+    chart: ./namespaces
+
+  - name: ingress-nginx
+    namespace: ingress-nginx
+    chart: ingress-nginx/ingress-nginx
+    values:
+      - values/ingress-nginx.yaml.gotmpl
+
+  - name: cert-manager
+    namespace: cert-manager
+    chart: jetstack/cert-manager
+    values:
+      - values/cert-manager.yaml.gotmpl
+
+  - name: cert-manager-issuers
+    namespace: cert-manager
+    chart: ./cert-manager
+
+  - name: external-dns
+    namespace: external-dns
+    chart: external-dns/external-dns
+    values:
+      - values/external-dns.yaml.gotmpl

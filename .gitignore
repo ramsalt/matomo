@@ -53,5 +53,5 @@ Thumbs.db
 *.csr
 *.crt
 
-
+secrets.yaml
 .envrc

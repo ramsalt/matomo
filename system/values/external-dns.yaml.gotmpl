@@ -1,0 +1,32 @@
+---
+image:
+  pullPolicy: Always
+
+sources:
+  - ingress
+
+provider: cloudflare
+
+env:
+  - name: CF_API_TOKEN
+    value: {{ .Values.cloudflareToken }}
+
+domainFilters:
+  - ramsalt.com
+
+registry: "txt"
+txtOwnerId: "matomo-k8s"
+
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+
+resources:
+  requests:
+    cpu: 15m
+    memory: 105M
+  limits:
+    cpu: 100m
+    memory: 105M
+
+# vim: sw=2 ts=2 syntax=yaml

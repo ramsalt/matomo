@@ -1,12 +1,7 @@
-rbac:
-  scope: true
-
+---
 controller:
-  scope:
-    enabled: true
-
   image:
-    pullPolicy: Always
+    pullPolicy: {{ .Values.image.pullPolicy }}
 
   kind: DaemonSet
 
@@ -40,3 +35,5 @@ controller:
 
 defaultBackend:
   enabled: false
+
+# vim: sw=2 ts=2 syntax=yaml
