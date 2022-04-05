@@ -1,4 +1,10 @@
+rbac:
+  scope: true
+
 controller:
+  scope:
+    enabled: true
+
   image:
     pullPolicy: Always
 

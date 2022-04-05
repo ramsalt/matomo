@@ -15,7 +15,8 @@ jobs:
           command: |
             mkdir ~/.kube
             echo "$KUBECFG" | base64 -d > ~/.kube/config
-            cat ~/.kube/config
+            chmod 700 ~/.kube
+            chmod 600 ~/.kube/config
 
       - helm/install-helm-client:
           version: v3.8.1
@@ -26,7 +27,7 @@ jobs:
 
       - run:
           name: "Install ingress-nginx chart"
-          command: helm -n ingress-nginx install ingress-nginx --values values/ingress-nginx.yaml ingress-nginx/ingress-nginx
+          command: helm -n matomo install ingress-nginx --values values/ingress-nginx.yaml ingress-nginx/ingress-nginx
 
 orbs:
   helm: circleci/helm@1.2.0
