@@ -1,0 +1,29 @@
+
+replicaCount: 2
+
+image:
+  pullPolicy: Always
+  tag: "4.8.0"
+
+matomo:
+  database:
+    host: "matomodb.ramsalt.com"
+  enableProxyUriHeader: "no"
+  assumeSecurePortocol: "no"
+  enableForceSsl: "no"
+  proxyClientHeader: ""
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+  hosts:
+    - host: matomo-k8s.ramsalt.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+   - secretName: matomo-tls
+     hosts:
+       - matomo-k8s.ramsalt.com

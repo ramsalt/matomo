@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "matomo.fullname" . }}-env
+  labels:
+    {{- include "matomo.labels" . | nindent 4 }}
+data:
+  MATOMO_SKIP_BOOTSTRAP: "no"
+  ALLOW_EMPTY_PASSWORD: "no"
+  MATOMO_HOST: {{ .Values.matomo.host }}
+  MATOMO_USERNAME: {{ .Values.matomo.auth.username | quote }}
+  MATOMO_EMAIL: {{ .Values.matomo.auth.email | quote }}
+  MATOMO_WEBSITE_NAME: {{ .Values.matomo.website.name | quote }}
+  MATOMO_WEBSITE_HOST: {{ .Values.matomo.website.host | quote }}
+  MATOMO_DATABASE_HOST: {{ .Values.matomo.database.host | quote }}
+  MATOMO_DATABASE_PORT_NUMBER: {{ .Values.matomo.database.port | quote }}
+  MATOMO_DATABASE_NAME: {{ .Values.matomo.database.name | quote }}
+  MATOMO_DATABASE_USER: {{ .Values.matomo.database.user | quote }}
+  MATOMO_ENABLE_DATABASE_SSL: {{ .Values.matomo.database.sslEnable | quote }}
+  MATOMO_DATABASE_SSL_CA_FILE: {{ .Values.matomo.database.sslCa | quote }}
+  MATOMO_DATABASE_SSL_CERT_FILE: {{ .Values.matomo.database.sslCrt | quote }}
+  MATOMO_DATABASE_SSL_KEY_FILE: {{ .Values.matomo.database.sslKey | quote }}
+  MATOMO_VERIFY_DATABASE_SSL: {{ .Values.matomo.database.sslVerify | quote }}
+  MATOMO_ENABLE_PROXY_URI_HEADER: {{ .Values.matomo.enableProxyUriHeader | quote }}
+  MATOMO_ENABLE_ASSUME_SECURE_PROTOCOL: {{ .Values.matomo.assumeSecureProtocol | quote }}
+  MATOMO_ENABLE_FORCE_SSL: {{ .Values.matomo.enableForceSsl | quote }}
+  MATOMO_PROXY_CLIENT_HEADER: {{ .Values.matomo.proxyClientHeader | quote }}
