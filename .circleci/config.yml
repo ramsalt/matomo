@@ -17,7 +17,7 @@ jobs:
             echo "$KUBECONFIG" | base64 -d > ~/.kube/config
 
       - helm/install-helm-client:
-          helm-version: v3.8.1
+          version: v3.8.1
 
       - run:
           name: "Add ingress-nginx repository"
