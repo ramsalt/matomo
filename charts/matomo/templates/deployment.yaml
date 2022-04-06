@@ -8,13 +8,21 @@ spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
   selector:
     matchLabels:
       {{- include "matomo.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap-env.yaml") . | sha256sum }}
+        checksum/env: {{ include (print $.Template.BasePath "/secret-env.yaml") . | sha256sum }}
+        checksum/tls: {{ include (print $.Template.BasePath "/secret-tls.yaml") . | sha256sum }}
+      {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
@@ -29,6 +37,9 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
+          env:
+            - name: MATOMO_SKIP_BOOTSTRAP
+              value: "no"
           envFrom:
             - configMapRef:
                 name: {{ include "matomo.fullname" . }}-env
@@ -72,7 +83,7 @@ spec:
             medium: "Memory"
         - name: tls
           secret:
-            secretName: {{ include "matomo.fullname" . }}-tls
+            secretName: {{ include "matomo.fullname" . }}-database-tls
         - name: data
           emptyDir: {}
       {{- with .Values.nodeSelector }}

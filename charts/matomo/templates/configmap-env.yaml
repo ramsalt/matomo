@@ -5,8 +5,8 @@ metadata:
   labels:
     {{- include "matomo.labels" . | nindent 4 }}
 data:
-  MATOMO_SKIP_BOOTSTRAP: "no"
   ALLOW_EMPTY_PASSWORD: "no"
+  BITNAMIE_DEBUG: {{ .Values.matomo.bitnamiDebug | quote }}
   MATOMO_HOST: {{ .Values.matomo.host }}
   MATOMO_USERNAME: {{ .Values.matomo.auth.username | quote }}
   MATOMO_EMAIL: {{ .Values.matomo.auth.email | quote }}
@@ -21,7 +21,15 @@ data:
   MATOMO_DATABASE_SSL_CERT_FILE: {{ .Values.matomo.database.sslCrt | quote }}
   MATOMO_DATABASE_SSL_KEY_FILE: {{ .Values.matomo.database.sslKey | quote }}
   MATOMO_VERIFY_DATABASE_SSL: {{ .Values.matomo.database.sslVerify | quote }}
+  PHP_ENABLE_OPCACHE: {{ .Values.matomo.php.enableOpcache | quote }}
+  PHP_MEMORY_LIMIT: {{ .Values.matomo.php.memoryLimit | quote }}
+  PHP_MAX_EXECUTION_TIME: {{ .Values.matomo.php.maxExecutionTime | quote }}
+  PHP_MAX_INPUT_VARS: {{ .Values.matomo.php.maxInputVars | quote }}
+  PHP_POST_MAX_SIZE: {{ .Values.matomo.php.postMaxSize | quote }}
+  PHP_UPLOAD_MAX_FILESIZE: {{ .Values.matomo.php.uploadMaxFilesize | quote }}
   MATOMO_ENABLE_PROXY_URI_HEADER: {{ .Values.matomo.enableProxyUriHeader | quote }}
   MATOMO_ENABLE_ASSUME_SECURE_PROTOCOL: {{ .Values.matomo.assumeSecureProtocol | quote }}
   MATOMO_ENABLE_FORCE_SSL: {{ .Values.matomo.enableForceSsl | quote }}
   MATOMO_PROXY_CLIENT_HEADER: {{ .Values.matomo.proxyClientHeader | quote }}
+  MATOMO_PROXY_HOST_HEADER: {{ .Values.matomo.proxyHostHeader | quote }}
+  MATOMO_MULTI_SERVER_ENVIRONMENT: {{ .Values.matomo.multiServerEnvironment | quote }}

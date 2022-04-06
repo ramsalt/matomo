@@ -3,21 +3,43 @@ replicaCount: 2
 
 image:
   pullPolicy: Always
-  tag: "4.8.0"
+  # tag: "4.8.0"
+  tag: "main"
 
 matomo:
+  bitnameDebug: "true"
   database:
     host: "matomodb.ramsalt.com"
+    port: "3306"
+    name: "matomo"
+    user: "matomo"
+  php:
+    memoryLimit: "256M"
+    maxExecutionTime: "30"
+    maxInputVars: "1000"
+    postMaxSize: "40M"
+    uploadMaxFilesize: "40M"
   enableProxyUriHeader: "no"
-  assumeSecurePortocol: "no"
-  enableForceSsl: "no"
-  proxyClientHeader: ""
+  assumeSecurePortocol: "yes"
+  enableForceSsl: "yes"
+  proxyClientHeader: "HTTP_X_FORWARDED_FOR"
+  proxyHostHeader: ""
+  multiServerEnvironment: "yes"
+
+resources: 
+  limits:
+    cpu: 1500m
+    memory: 12Gi
+  requests:
+    cpu: 500m
+    memory: 6Gi 
 
 ingress:
   enabled: true
   className: "nginx"
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-staging
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/affinity: "cookie"
   hosts:
     - host: matomo-k8s.ramsalt.com
       paths:

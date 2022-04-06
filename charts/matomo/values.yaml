@@ -5,12 +5,13 @@
 replicaCount: 1
 
 image:
-  repository: bitnami/matomo
+  repository: ghcr.io/ramsalt/matomo
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
 matomo:
+  bitnamiDebug: "false"
   host: "127.0.0.1"
   auth:
     username: "User"
@@ -29,10 +30,19 @@ matomo:
     sslCrt: "/etc/ssl/tls.crt"
     sslKey: "/etc/ssl/tls.key"
     sslVerify: "yes"
+  php:
+    enableOpcache: "yes"
+    memoryLimit: "256M"
+    maxExecutionTime: "30"
+    maxInputVars: "1000"
+    postMaxSize: "40M"
+    uploadMaxFilesize: "40M"
   enableProxyUriHeader: "no"
   assumeSecureProtocol: "no"
   enableForceSsl: "no"
   proxyClientHeader: ""
+  proxyHostHeader: ""
+  multiServerEnvironment: "no"
 
 imagePullSecrets: []
 nameOverride: ""
