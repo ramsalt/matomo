@@ -20,7 +20,7 @@ matomo:
     postMaxSize: "40M"
     uploadMaxFilesize: "40M"
   enableProxyUriHeader: "no"
-  assumeSecurePortocol: "yes"
+  assumeSecureProtocol: "yes"
   enableForceSsl: "yes"
   proxyClientHeader: "HTTP_X_FORWARDED_FOR"
   proxyHostHeader: ""
