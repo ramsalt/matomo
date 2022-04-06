@@ -28,6 +28,7 @@ matomo_env_vars=(
     MATOMO_ENABLE_ASSUME_SECURE_PROTOCOL
     MATOMO_ENABLE_FORCE_SSL
     MATOMO_ENABLE_PROXY_URI_HEADER
+    MATOMO_MULTI_SERVER_ENVIRONMENT
     MATOMO_USERNAME
     MATOMO_PASSWORD
     MATOMO_EMAIL
@@ -89,6 +90,8 @@ export MATOMO_PROXY_CLIENT_HEADER="${MATOMO_PROXY_CLIENT_HEADER:-}" # only used 
 export MATOMO_ENABLE_ASSUME_SECURE_PROTOCOL="${MATOMO_ENABLE_ASSUME_SECURE_PROTOCOL:-no}" # only used during the first initialization
 export MATOMO_ENABLE_FORCE_SSL="${MATOMO_ENABLE_FORCE_SSL:-no}" # only used during the first initialization
 export MATOMO_ENABLE_PROXY_URI_HEADER="${MATOMO_ENABLE_PROXY_URI_HEADER:-no}" # only used during the first initialization
+
+export MATOMO_MULTI_SERVER_ENVIRONMENT="${MATOMO_MULTI_SERVER_ENVIRONMENT:-no}"
 
 # Matomo credentials
 export MATOMO_USERNAME="${MATOMO_USERNAME:-user}" # only used during the first initialization

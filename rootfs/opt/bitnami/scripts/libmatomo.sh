@@ -68,7 +68,7 @@ matomo_validate() {
     fi
 
     # Check yes no values
-    for yes_no_var in "MATOMO_ENABLE_DATABASE_SSL" "MATOMO_ENABLE_PROXY_URI_HEADER" "MATOMO_VERIFY_DATABASE_SSL" "MATOMO_ENABLE_FORCE_SSL" "MATOMO_ENABLE_ASSUME_SECURE_PROTOCOL"; do
+    for yes_no_var in "MATOMO_ENABLE_DATABASE_SSL" "MATOMO_ENABLE_PROXY_URI_HEADER" "MATOMO_VERIFY_DATABASE_SSL" "MATOMO_ENABLE_FORCE_SSL" "MATOMO_ENABLE_ASSUME_SECURE_PROTOCOL" "MATOMO_MULTI_SERVER_ENVIRONMENT"; do
         check_yes_no_value "${yes_no_var}"
     done
 
@@ -168,6 +168,11 @@ EOF
         if is_boolean_yes "$MATOMO_ENABLE_FORCE_SSL"; then
             info "Configuring Matomo to force ssl"
             ini-file set -s "General" -k "force_ssl" -v "1" "$MATOMO_CONF_FILE"
+        fi
+
+        if is_boolean_yes "$MATOMO_MULTI_SERVER_ENVIRONMENT"; then
+            info "Configuring Matomo for multi server environment"
+            ini-file set -s "General" -k "multi_server_environment" -v "1" "$MATOMO_CONF_FILE"
         fi
 
         # Database SSL
