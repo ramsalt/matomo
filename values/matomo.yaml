@@ -22,8 +22,8 @@ matomo:
   enableProxyUriHeader: "no"
   assumeSecureProtocol: "yes"
   enableForceSsl: "yes"
-  proxyClientHeader: "HTTP_X_FORWARDED_FOR"
-  proxyHostHeader: ""
+  proxyClientHeader: "HTTP_X_ORIGINAL_FORWARDED_FOR"
+  proxyHostHeader: "HTTP_CDN_HOST"
   multiServerEnvironment: "yes"
 
 cronjob:
