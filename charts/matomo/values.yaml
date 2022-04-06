@@ -44,6 +44,10 @@ matomo:
   proxyHostHeader: ""
   multiServerEnvironment: "no"
 
+cronjob:
+  enabled: false
+  resources: {}
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
