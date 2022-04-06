@@ -50,6 +50,7 @@ ingress:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/affinity-mode: "persistent"
   hosts:
     - host: matomo-k8s.ramsalt.com
       paths:
