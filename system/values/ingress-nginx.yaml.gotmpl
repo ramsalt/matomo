@@ -6,10 +6,16 @@ controller:
   kind: DaemonSet
 
   config:
-    use-proxy-protocol: "false"
+    use-proxy-protocol: "true"
+    real-ip-header: "proxy_protocol"
     use-forwarded-headers: "true"
     proxy-buffer-size: "64k"
     proxy-real-ip-cidr: "0.0.0.0/0"
+
+  service:
+    externalTrafficPolicy: Local
+    annotations:
+      service.beta.kubernetes.io/ovh-loadbalancer-proxy-protocol: "v2"
 
   resources:
     requests:
