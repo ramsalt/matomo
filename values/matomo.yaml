@@ -3,8 +3,6 @@ replicaCount: 2
 
 image:
   pullPolicy: Always
-  # tag: "4.8.0"
-  tag: "main"
 
 matomo:
   bitnameDebug: "true"

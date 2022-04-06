@@ -1,30 +1,34 @@
 # Matomo configuration
 
-Configuration of Nginx, PHP and Matomo on the frontend servers.
+Configuration of Matomo on the frontend Kubernetes cluster.
 
 For an overview see [Confluence](https://kb-ramsalt.atlassian.net/l/c/4kaDfkXt).
 
-## Deployment
+This repository contains all manifests for the configuration of an OVH managed
+Kubernetes cluster as Matomo frontend.
 
-All pushes to the `main` branch trigger the deployment in [.circleci/config.yml](.circleci/config.yml).
+* **System components** (everything under `system/') need to be manually deployed by a cluster admin.
+* **Matomo** (Helmchart in `charts/matomo`, configured with files in `values/`) will be upgraded automatically by CircleCI on each push to the repo.
 
-* Add ssh key from project configuration (needs to correspond to the key set by Ansible](https://bitbucket.org/ramsalt/ansible-playbooks/src/master/roles/_local.matomo/)
-* Generate matomo config by substituting env variables in [templates/matomo/config.ini.php](templates/matomo/config.ini.php)
-* Copy the complete deploy directory to all Matomo frontend nodes
-* Run the [deployment script](deploy/bin/deploy.sh) on each node
+## System Deployment
 
-## Nginx configuration
+Change to `system/` and adjust the configuration as necessary.
 
-Nginx configuration is in [deploy/nginx/default.conf](deploy/nginx/default.conf). As this setup is for a dedicated web server it simply overwrites the default nginx configuration. Each node has local Let's Encrypt certificates configured by Ansible under `/etc/letsencrypt/live/matomo/`.
+Run helmfile to apply the changes. For requirements see the [helmfile documentation](https://github.com/roboll/helmfile):
 
-The configuration is based on [Matomo*s recommmendations](https://github.com/matomo-org/matomo-nginx).
+```
+helmfile apply
+```
 
-## PHP configuration
+## Matomo Deployment
 
-PHP ocnfiguration is in [deploy/php/www.conf](deploy/php/www.conf). Again, this simply overwrites the configuration for the default php pool.
+All pushes to the `matomo-k8s` branch trigger the deployment in [.circleci/config.yml](.circleci/config.yml).
+
+The matomo container is a [custom image](https://github.com/ramsalt/matomo) based on [Bitnami's Matomo container](https://github.com/bitnami/bitnami-docker-matomo).
 
 ## Matomo configuration
 
-Matomo configuration is in [template/matomo-config/config.ini.php](template/matomo-config/config.ini.php). The `MATOMO_MYSQL_PASS` environment variable will be replaced by the password configured in CircleCI on deployment.
+* Matomo configuration is in [values/matomo.yaml](values/matomo.yaml).
+* Secrets configuration is generated from [values/secrets.yaml.tpl](values/secrets.yaml.tpl).  The `MATOMO_MYSQL_PASS` and DATABASE_ ssl environment variable will be replaced by the password configured in CircleCI on deployment.
 
-SSL certificates for encrypted communication with MySQL have been created by Ansible in `/etc/mysql/matomo/`.
+SSL certificates for encrypted communication with MySQL have been created by Ansible.

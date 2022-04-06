@@ -22,12 +22,13 @@ jobs:
           version: v3.8.1
 
       - run:
-          name: "Add ingress-nginx repository"
-          command: helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+          name: "Prepare secrets yaml"
+          command: envsubst < values/secrets.yaml.tpl > secrets.yaml
 
       - run:
-          name: "Install ingress-nginx chart"
-          command: helm -n matomo install ingress-nginx --values values/ingress-nginx.yaml ingress-nginx/ingress-nginx
+          name: "Install matomo chart"
+          command: helm -n matomo upgrade --install matomo --values secrets.yaml --values values/matomo.yaml charts/matomo/
+
 
 orbs:
   helm: circleci/helm@1.2.0
