@@ -1,4 +1,6 @@
-FROM bitnami/matomo
+ARG MATOMO_VERSION="4.8.0"
+
+FROM bitnami/matomo:${MATOMO_VERSION}
 
 ARG MAXMINDDB_VERSION="8.1-1.6.0-v3"
 
