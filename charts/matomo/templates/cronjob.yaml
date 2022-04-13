@@ -22,9 +22,6 @@ spec:
               imagePullPolicy: {{ .Values.image.pullPolicy }}
               securityContext:
                 {{- toYaml .Values.securityContext | nindent 16 }}
-              env:
-                - name: MATOMO_SKIP_BOOTSTRAP
-                  value: "yes"
               envFrom:
                 - configMapRef:
                     name: {{ include "matomo.fullname" . }}-env
