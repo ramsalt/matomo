@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "matomo.fullname" . }}-crontab
+  labels:
+    {{- include "matomo.labels" . | nindent 4 }}
+data:
+  www-data: |
+    */5 * * * * /var/www/html/console core:run-scheduled-tasks
+      1 * * * * /var/www/html/console core:archive
