@@ -8,7 +8,7 @@ USER 0
 
 RUN apk add --no-cache gettext
 
-COPY --chown=wodby:wodby config /var/www/html/config
+COPY --chown=wodby:wodby config /usr/src/matomo-config
 
 # Revert to non-privileged user
 USER 1000

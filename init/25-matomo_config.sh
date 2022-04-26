@@ -19,4 +19,4 @@ export MATOMO_ENABLE_TRUSTED_HOST_CHECK="${MATOMO_ENABLE_TRUSTED_HOST_CHECK:-1}"
 export MATOMO_PROXY_CLIENT_HEADER="${MATOMO_PROXY_CLIENT_HEADER:-}"
 export MATOMO_PROXY_HOST_HEADER="${MATOMO_PROXY_HOST_HEADER:-}"
 
-envsubst < "${APP_ROOT}/config/config.tpl.php" > "${APP_ROOT}/config/config.ini.php"
+envsubst < "/usr/src/matomo-config/config.tpl.php" > "${APP_ROOT}/config/config.ini.php"
