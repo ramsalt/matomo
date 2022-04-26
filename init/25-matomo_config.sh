@@ -20,3 +20,6 @@ export MATOMO_PROXY_CLIENT_HEADER="${MATOMO_PROXY_CLIENT_HEADER:-}"
 export MATOMO_PROXY_HOST_HEADER="${MATOMO_PROXY_HOST_HEADER:-}"
 
 envsubst < "/usr/src/matomo-config/config.tpl.php" > "${APP_ROOT}/config/config.ini.php"
+
+chown wodby:www-data "${APP_ROOT}/config/config.ini.php"
+chmod 664 "${APP_ROOT}/config/config.ini.php"
