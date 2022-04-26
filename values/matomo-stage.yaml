@@ -46,8 +46,8 @@ resources:
     cpu: 1500m
     memory: 12Gi
   requests:
-    cpu: 500m
-    memory: 6Gi
+    cpu: 50m
+    memory: 6Mi
 
 ingress:
   enabled: true
@@ -57,11 +57,11 @@ ingress:
     nginx.ingress.kubernetes.io/affinity: "cookie"
     nginx.ingress.kubernetes.io/affinity-mode: "persistent"
   hosts:
-    - host: matomo-k8s.ramsalt.com
+    - host: matomo-k8s-stage.ramsalt.com
       paths:
         - path: /
           pathType: Prefix
   tls:
    - secretName: matomo-tls
      hosts:
-       - matomo-k8s.ramsalt.com
+       - matomo-k8s-stage.ramsalt.com

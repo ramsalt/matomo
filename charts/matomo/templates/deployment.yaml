@@ -36,7 +36,7 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}
+        - name: matomo
           env:
             - name: MATOMO_SKIP_BOOTSTRAP
               value: "no"
@@ -50,24 +50,16 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: http
-              containerPort: 8080
+            - name: fcgi
+              containerPort: 9000
               protocol: TCP
-            - name: https
-              containerPort: 8443
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: https
-              scheme: HTTPS
-            initialDelaySeconds: 90
           readinessProbe:
-            httpGet:
-              path: /
-              port: https
-              scheme: HTTPS
-            initialDelaySeconds: 90
+            exec:
+              command: [make, check-ready, '-f', /usr/local/bin/actions.mk]
+            initialDelaySeconds: 5
+            failureThreshold: 2
+            timeoutSeconds: 3
+            periodSeconds: 30
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
@@ -75,16 +67,93 @@ spec:
               mountPath: /tmp
             - name: tls
               mountPath: "/etc/ssl"
-            - name: data
-              mountPath: /bitnami
+            - name: app
+              mountPath: /var/www/html
+
+        - name: nginx
+          env:
+            - name: NGINX_VHOST_PRESET
+              value: matomo
+            - name: NGINX_SET_REAL_IP_FROM
+              value: 0.0.0.0/0
+            - name: NGINX_BACKEND_HOST
+              value: 127.0.0.1
+          securityContext:
+            {{- toYaml .Values.nginx.securityContext | nindent 12 }}
+          image: "{{ .Values.nginx.image.repository }}:{{ .Values.nginx.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /.healthz
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 80
+            failureThreshold: 2
+            timeoutSeconds: 3
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /.healthz
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 5
+            failureThreshold: 2
+            timeoutSeconds: 3
+            periodSeconds: 30
+          resources:
+            {{- toYaml .Values.nginx.resources | nindent 12 }}
+          volumeMounts:
+            - name: nginx-tmp
+              mountPath: /tmp
+            - name: app
+              mountPath: /var/www/html
+
+        - name: crond
+          command:
+            - sudo
+            - '-E'
+            - crond
+            - '-f'
+            - '-d'
+            - '8'
+          env:
+            - name: MATOMO_SKIP_BOOTSTRAP
+              value: "no"
+          envFrom:
+            - configMapRef:
+                name: {{ include "matomo.fullname" . }}-env
+            - secretRef:
+                name: {{ include "matomo.fullname" . }}-env
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources:
+            {{- toYaml .Values.crond.resources | nindent 12 }}
+          volumeMounts:
+            - name: nginx-tmp
+              mountPath: /tmp
+            - name: app
+              mountPath: /var/www/html
+
       volumes:
         - name: tmp
+          emptyDir:
+            medium: "Memory"
+        - name: nginx-tmp
+          emptyDir:
+            medium: "Memory"
+        - name: crond-tmp
           emptyDir:
             medium: "Memory"
         - name: tls
           secret:
             secretName: {{ include "matomo.fullname" . }}-database-tls
-        - name: data
+        - name: app
           emptyDir: {}
       {{- with .Values.nodeSelector }}
       nodeSelector:

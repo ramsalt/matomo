@@ -6,7 +6,6 @@ metadata:
     {{- include "matomo.labels" . | nindent 4 }}
 data:
   ALLOW_EMPTY_PASSWORD: "no"
-  BITNAMIE_DEBUG: {{ .Values.matomo.bitnamiDebug | quote }}
   MATOMO_HOST: {{ .Values.matomo.host }}
   MATOMO_USERNAME: {{ .Values.matomo.auth.username | quote }}
   MATOMO_EMAIL: {{ .Values.matomo.auth.email | quote }}
