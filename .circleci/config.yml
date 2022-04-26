@@ -41,4 +41,4 @@ workflows:
       - install:
           filters:
             branches:
-              only: matomo-k8s
+              only: main
