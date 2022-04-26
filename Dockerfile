@@ -1,11 +1,16 @@
-ARG MATOMO_VERSION="4.9.0"
+ARG MATOMO_VERSION="4.8"
+ARG WODBY_TAG="1.42.1"
 
-FROM bitnami/matomo:${MATOMO_VERSION}
+FROM wodby/matomo:${MATOMO_VERSION}
 
 # Change user for privileged actions
 USER 0
 
-COPY rootfs /
+RUN apk add --no-cache gettext
+
+COPY --chown=wodby:wodby config /var/www/html/config
 
 # Revert to non-privileged user
-USER 1001
+USER 1000
+
+COPY init /docker-entrypoint-init.d/
