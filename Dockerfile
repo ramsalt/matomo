@@ -12,11 +12,11 @@ ARG LICENSE_KEY
 ARG PLUGIN_LIST=" \
 AbTesting \
 CustomReports \
-CustomVariables \
+CustomVariables:4.0.1 \
 FormAnalytics \
 Funnels \
 HeatmapSessionRecording \
-InvalidateReports \
+InvalidateReports:4.0.1 \
 JsTrackerCustom \
 MarketingCampaignsReporting \
 MultiChannelConversionAttribution \
@@ -26,8 +26,9 @@ UsersFlow \
 
 WORKDIR /usr/src/matomo-plugins
 RUN set -e && \
-    for PLUGIN_NAME in $PLUGIN_LIST; do \
-        curl -f -sS --output $PLUGIN_NAME.zip --data "access_token=$LICENSE_KEY" "https://plugins.matomo.org/api/2.0/plugins/$PLUGIN_NAME/download/latest?matomo=$MATOMO_VERSION" && \
+    for PLUGIN in $PLUGIN_LIST; do \
+        IFS=':' read PLUGIN_NAME PLUGIN_VERSION < <(echo $PLUGIN) && \
+        curl -f -sS --output $PLUGIN_NAME.zip --data "access_token=$LICENSE_KEY" "https://plugins.matomo.org/api/2.0/plugins/$PLUGIN_NAME/download/${PLUGIN_VERSION:-latest}?matomo=$MATOMO_VERSION" && \
         unzip $PLUGIN_NAME.zip && \
         rm $PLUGIN_NAME.zip || exit 1; \
     done
