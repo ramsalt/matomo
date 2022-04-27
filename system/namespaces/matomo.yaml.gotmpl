@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: matomo
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ghcr-access-token
+  namespace: matomo
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: {{ printf "{\"auths\":{\"%s\":{\"auth\":\"%s\"}}}" "ghcr.io" (printf "%s:%s" .Values.ghcr.user .Values.ghcr.token | b64enc) | b64enc }}
+# vim: syntax=yaml ts=2 sw=2
