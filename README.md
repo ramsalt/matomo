@@ -32,3 +32,33 @@ The matomo container is a [custom image](https://github.com/ramsalt/matomo) base
 * Secrets configuration is generated from [values/secrets.yaml.tpl](values/secrets.yaml.tpl).  The `MATOMO_MYSQL_PASS` and DATABASE_ ssl environment variable will be replaced by the password configured in CircleCI on deployment.
 
 SSL certificates for encrypted communication with MySQL have been created with [Ansible](https://bitbucket.org/ramsalt/ansible-playbooks/src/master/roles/_local.small_ca).
+
+# Secrets
+
+Secrets are created by helmfile in a systems deployment (see above).
+Secrets are gpg encrypted with sops. If the gpg key for decryption is not available, the easiest solution is to re-create the secrets in their respective systems and update the secrets files accordingly.
+
+## Cloudflare access token for External-DNS
+
+External-DNS needs this token to be able to update records in Cloudflare.
+
+file: `system/secrets/external-dns.yaml`
+
+```yaml
+cloudflareToken: <TOKEN>
+# vim: sw=2 ts=2 syntax=yaml
+```
+
+## GitHub container registry uusername and token
+
+As our matomo container image contains paid plugins it cannot be made publically available. So a username and token with access to the package in ghcr is needed.
+(See [Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token))
+
+file: `system/secrets/ghcr-token.yaml`
+
+```yaml
+ghcr:
+    user: <USERNAME>
+    token: <TOKEN>
+# vim: sw=2 ts=2 syntax=yaml
+```

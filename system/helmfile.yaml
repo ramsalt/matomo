@@ -4,6 +4,7 @@ environments:
       - ./environments/default.yaml
     secrets:
       - ./secrets/external-dns.yaml
+      - ./secrets/ghcr-token.yaml
 
 helmDefaults:
   kubeContext: kubernetes-admin@Matomo
@@ -24,6 +25,7 @@ releases:
 
   - name: ingress-nginx
     namespace: ingress-nginx
+    version: "4.0.19"
     chart: ingress-nginx/ingress-nginx
     values:
       - values/ingress-nginx.yaml.gotmpl
