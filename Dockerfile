@@ -1,6 +1,7 @@
 ARG MATOMO_VERSION="4.9"
+ARG WODBY_TAG="1.42.1"
 
-FROM wodby/matomo:${MATOMO_VERSION}
+FROM wodby/matomo:${MATOMO_VERSION}-${WODBY_TAG}
 
 # Change user for privileged actions
 USER 0
