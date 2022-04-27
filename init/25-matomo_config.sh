@@ -23,3 +23,7 @@ envsubst < "/usr/src/matomo-config/config.tpl.php" > "${APP_ROOT}/config/config.
 
 chown wodby:www-data "${APP_ROOT}/config/config.ini.php"
 chmod 664 "${APP_ROOT}/config/config.ini.php"
+
+cp -r /usr/src/matomo-plugins/* "${APP_ROOT}/plugins"
+chmod -R g+w "${APP_ROOT}/plugins"
+chgrp -R www-data "${APP_ROOT}/plugins"
