@@ -3,6 +3,10 @@ replicaCount: 2
 
 image:
   pullPolicy: Always
+  tag: main
+
+imagePullSecrets:
+  - name: ghcr-access-token
 
 matomo:
   database:

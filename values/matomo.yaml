@@ -4,6 +4,9 @@ replicaCount: 2
 image:
   pullPolicy: Always
 
+imagePullSecrets:
+  - name: ghcr-access-token
+
 matomo:
   database:
     host: "matomodb.ramsalt.com"
