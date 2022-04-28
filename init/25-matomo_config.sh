@@ -41,6 +41,10 @@ envsubst < "/usr/src/matomo-config/config.tpl.php" > "${APP_ROOT}/config/config.
 chown wodby:www-data "${APP_ROOT}/config/config.ini.php"
 chmod 664 "${APP_ROOT}/config/config.ini.php"
 
+# Fix permissions for tag manager
+chown wodby:www-data "${APP_ROOT}/js"
+chmod 775 "${APP_ROOT}/js"
+
 # Install plugins
 cp -r /usr/src/matomo-plugins/* "${APP_ROOT}/plugins"
 chmod -R g+w "${APP_ROOT}/plugins"
