@@ -19,11 +19,33 @@ export MATOMO_ENABLE_TRUSTED_HOST_CHECK="${MATOMO_ENABLE_TRUSTED_HOST_CHECK:-1}"
 export MATOMO_PROXY_CLIENT_HEADER="${MATOMO_PROXY_CLIENT_HEADER:-}"
 export MATOMO_PROXY_HOST_HEADER="${MATOMO_PROXY_HOST_HEADER:-}"
 
+activate_plugin() {
+    local PLUGINS="$@"
+
+    echo Activating plugins $PLUGINS
+    ./console plugin:activate $PLUGINS || {
+        echo
+        echo "********************************************************"
+        echo "Couldn't activate plugins. See errors above for details."
+        echo
+        echo "Matomo will now start regardless, but might not work as expected."
+        echo "Restart the container after fixing the problem."
+        echo "********************************************************"
+        echo
+    }
+}
+
+# Create matomo config
 envsubst < "/usr/src/matomo-config/config.tpl.php" > "${APP_ROOT}/config/config.ini.php"
 
 chown wodby:www-data "${APP_ROOT}/config/config.ini.php"
 chmod 664 "${APP_ROOT}/config/config.ini.php"
 
+# Install plugins
 cp -r /usr/src/matomo-plugins/* "${APP_ROOT}/plugins"
 chmod -R g+w "${APP_ROOT}/plugins"
 chgrp -R www-data "${APP_ROOT}/plugins"
+
+# Activate plugins
+PLUGINS="TagManager $(find /usr/src/matomo-plugins/* -maxdepth 0 -type d -printf "%f ")"
+activate_plugin $PLUGINS
