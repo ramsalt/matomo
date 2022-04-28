@@ -26,9 +26,9 @@ matomo:
     user: "matomo"
     password: ""
     sslEnable: "yes"
-    sslCa: "/etc/ssl/ca.crt"
-    sslCrt: "/etc/ssl/tls.crt"
-    sslKey: "/etc/ssl/tls.key"
+    sslCa: "/etc/tls/ca.crt"
+    sslCrt: "/etc/tls/tls.crt"
+    sslKey: "/etc/tls/tls.key"
     sslVerify: "yes"
   php:
     enableOpcache: "yes"

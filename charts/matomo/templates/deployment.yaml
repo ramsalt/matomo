@@ -67,7 +67,7 @@ spec:
             - name: tmp
               mountPath: /tmp
             - name: tls
-              mountPath: "/etc/ssl"
+              mountPath: "/etc/tls"
             - name: app
               mountPath: /var/www/html
 
@@ -139,7 +139,7 @@ spec:
             - name: crond-tmp
               mountPath: /tmp
             - name: tls
-              mountPath: "/etc/ssl"
+              mountPath: "/etc/tls"
             - name: app
               mountPath: /var/www/html
             - name: crontab
