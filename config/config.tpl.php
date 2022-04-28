@@ -5,7 +5,6 @@ host = "${MATOMO_DATABASE_HOST}"
 username = "${MATOMO_DATABASE_NAME}"
 password = "${MATOMO_DATABASE_PASSWORD}"
 dbname = "${MATOMO_DATABASE_NAME}"
-tables_prefix = "matomo_"
 enable_ssl = ${MATOMO_ENABLE_DATABASE_SSL}
 ssl_ca = "${MATOMO_DATABASE_SSL_CA_FILE}"
 ssl_cert = "${MATOMO_DATABASE_SSL_CERT_FILE}"
