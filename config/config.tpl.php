@@ -20,6 +20,8 @@ salt = "4325a52bf1bc4bad5ed57c76d13aed56"
 proxy_client_headers[] = "${MATOMO_PROXY_CLIENT_HEADER}"
 proxy_host_headers[] = "${MATOMO_PROXY_HOST_HEADER}"
 
+action_title_category_delimiter = /
+
 [PluginsInstalled]
 PluginsInstalled[] = "CustomDimensions"
 PluginsInstalled[] = "CoreVue"
