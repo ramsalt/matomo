@@ -37,6 +37,8 @@ matomo:
     maxInputVars: "1000"
     postMaxSize: "40M"
     uploadMaxFilesize: "40M"
+    memoryLimit: "512M"
+    maxChildren: "20"
   enableProxyUriHeader: "no"
   assumeSecureProtocol: "no"
   enableForceSsl: "no"
