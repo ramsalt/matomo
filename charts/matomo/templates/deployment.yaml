@@ -79,6 +79,8 @@ spec:
               value: 0.0.0.0/0
             - name: NGINX_BACKEND_HOST
               value: 127.0.0.1
+            - name: NGINX_NO_DEFAULT_HEADERS
+              value: "on"
           securityContext:
             {{- toYaml .Values.nginx.securityContext | nindent 12 }}
           image: "{{ .Values.nginx.image.repository }}:{{ .Values.nginx.image.tag }}"
