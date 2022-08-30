@@ -12,12 +12,12 @@ ARG LICENSE_KEY
 ARG PLUGIN_LIST=" \
 AbTesting \
 CustomReports \
-CustomVariables:4.0.1 \
+CustomVariables \
 FormAnalytics \
 Funnels \
-GoogleAnalyticsImporter:4.1.10 \
+GoogleAnalyticsImporter \
 HeatmapSessionRecording \
-InvalidateReports:4.0.1 \
+InvalidateReports \
 JsTrackerCustom \
 MarketingCampaignsReporting \
 MultiChannelConversionAttribution \
