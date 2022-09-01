@@ -39,6 +39,7 @@ matomo:
     uploadMaxFilesize: "40M"
     memoryLimit: "512M"
     maxChildren: "20"
+    sendmailPath: "/usr/sbin/sendmail"
   enableProxyUriHeader: "no"
   assumeSecureProtocol: "no"
   enableForceSsl: "no"

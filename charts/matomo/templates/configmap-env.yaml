@@ -28,6 +28,7 @@ data:
   PHP_UPLOAD_MAX_FILESIZE: {{ .Values.matomo.php.uploadMaxFilesize | quote }}
   PHP_MEMORY_LIMIT: {{ .Values.matomo.php.memoryLimit | quote }}
   PHP_FPM_PM_MAX_CHILDREN: {{ .Values.matomo.php.maxChildren | quote }}
+  PHP_SENDMAIL_PATH: {{ .Values.matomo.php.sendmailPath | quote }}
   MATOMO_ENABLE_PROXY_URI_HEADER: {{ .Values.matomo.enableProxyUriHeader | quote }}
   MATOMO_ENABLE_ASSUME_SECURE_PROTOCOL: {{ .Values.matomo.assumeSecureProtocol | quote }}
   MATOMO_ENABLE_FORCE_SSL: {{ .Values.matomo.enableForceSsl | quote }}
