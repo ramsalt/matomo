@@ -80,16 +80,6 @@ opensmtpd:
       memory: "4Mi"
   securityContext:
     allowPrivilegeEscalation: true
-    capabilities:
-      drop:
-      - ALL
-      add:
-      - SETUID
-      - SETGID
-      - CHOWN
-      - FOWNER
-      - DAC_OVERRIDE
-      - NET_BIND_SERVICE
     readOnlyRootFilesystem: false
 
 crond:
