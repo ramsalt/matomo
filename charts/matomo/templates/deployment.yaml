@@ -138,6 +138,7 @@ spec:
               - check-ready
               - -f
               - /usr/local/bin/actions.mk
+              - host=127.0.0.1
             failureThreshold: 2
             initialDelaySeconds: 5
             periodSeconds: 30
