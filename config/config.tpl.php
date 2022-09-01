@@ -22,6 +22,12 @@ proxy_host_headers[] = "${MATOMO_PROXY_HOST_HEADER}"
 
 action_title_category_delimiter = /
 
+[mail]
+transport = "smtp"
+port = "25"
+host = "127.0.0.1"
+encryption = "none"
+
 [PluginsInstalled]
 PluginsInstalled[] = "CustomDimensions"
 PluginsInstalled[] = "CoreVue"
