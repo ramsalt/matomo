@@ -67,6 +67,30 @@ nginx:
     runAsNonRoot: true
     runAsUser: 1000
 
+opensmtpd:
+  image:
+    repository: wodby/opensmtpd
+    tag: "6-1.14.3"
+  relay:
+    host: smtp-relay.sendinblue.com
+    user: webmaster@ramsalt.com
+    password: ""
+  resources: {}
+  securityContext:
+    allowPrivilegeEscalation: true
+    capabilities:
+      drop:
+      - ALL
+      add:
+      - SETUID
+      - SETGID
+      - CHOWN
+      - DAC_OVERRIDE
+      - NET_BIND_SERVICE
+    readOnlyRootFilesystem: false
+    runAsNonRoot: true
+    runAsUser: 1000
+
 crond:
   resources: {}
 

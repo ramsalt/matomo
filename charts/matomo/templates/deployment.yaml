@@ -41,6 +41,8 @@ spec:
           env:
             - name: MATOMO_SKIP_BOOTSTRAP
               value: "no"
+            - name: SSMTP_MAILHUB
+              value: "127.0.0.1:25"
           envFrom:
             - configMapRef:
                 name: {{ include "matomo.fullname" . }}-env
@@ -115,6 +117,37 @@ spec:
             - name: app
               mountPath: /var/www/html
 
+        - name: opensmtpd
+          envFrom:
+            - configMapRef:
+                name: {{ include "matomo.fullname" . }}-opensmtpd-env
+            - secretRef:
+                name: {{ include "matomo.fullname" . }}-opensmtpd-env
+          securityContext:
+            {{- toYaml .Values.opensmtpd.securityContext | nindent 12 }}
+          image: "{{ .Values.opensmtpd.image.repository }}:{{ .Values.opensmtpd.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: smtp
+              containerPort: 25
+              protocol: TCP
+          livenessProbe:
+            tcpSocket:
+              port: smtp
+            initialDelaySeconds: 80
+            failureThreshold: 2
+            timeoutSeconds: 3
+            periodSeconds: 30
+          readinessProbe:
+            tcpSocket:
+              port: smtp
+            initialDelaySeconds: 5
+            failureThreshold: 2
+            timeoutSeconds: 3
+            periodSeconds: 30
+          resources:
+            {{- toYaml .Values.opensmtpd.resources | nindent 12 }}
+
         - name: crond
           command:
             - sudo
@@ -126,6 +159,8 @@ spec:
           env:
             - name: MATOMO_SKIP_BOOTSTRAP
               value: "no"
+            - name: SSMTP_MAILHUB
+              value: "127.0.0.1:25"
           envFrom:
             - configMapRef:
                 name: {{ include "matomo.fullname" . }}-env

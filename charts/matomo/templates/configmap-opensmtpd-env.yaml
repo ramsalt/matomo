@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "matomo.fullname" . }}-opensmtpd-env
+  labels:
+    {{- include "matomo.labels" . | nindent 4 }}
+data:
+  RELAY_HOST: {{ .Values.opensmtpd.relay.host | b64enc }}
+  RELAY_USER: {{ .Values.opensmtpd.relay.user | b64enc }}
