@@ -43,7 +43,7 @@ So for any user who should be allowed to initiate Matomo deployments, their user
 * Matomo configuration is in [values/matomo.yaml](values/matomo.yaml).
 * Secrets configuration is generated from [values/secrets.yaml.tpl](values/secrets.yaml.tpl).  The `MATOMO_MYSQL_PASS` and DATABASE_ ssl environment variable will be replaced by the password configured in the CircleCI context `matomo` on deployment.
 
-SSL certificates for encrypted communication with MySQL have been created with [Ansible](https://bitbucket.org/ramsalt/ansible-playbooks/src/master/roles/_local.small_ca).
+SSL certificates for encrypted communication with MySQL have been created with [Ansible](https://bitbucket.org/ramsalt/ansible-playbooks/src/master/matomo-database-ca-client.yml).
 
 # Secrets
 
