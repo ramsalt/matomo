@@ -10,32 +10,6 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: "Prepare kubeconfig"
-          command: |
-            mkdir ~/.kube
-            echo "$KUBECFG" | base64 -d > ~/.kube/config
-            chmod 700 ~/.kube
-            chmod 600 ~/.kube/config
-
-      - helm/install-helm-client:
-          version: v3.8.1
-
-      - run:
-          name: "Prepare secrets yaml"
-          command: envsubst < values/secrets.yaml.tpl > secrets.yaml
-
-      - run:
-          name: "Install matomo chart"
-          command: helm -n matomo upgrade --install matomo --values secrets.yaml --values values/matomo.yaml charts/matomo/
-
-  oidc:
-    machine:
-      image: ubuntu-2004:current
-
-    steps:
-      - checkout
-
       - kubernetes/install-kubectl
 
       - run:
@@ -51,18 +25,16 @@ jobs:
           command: |
             kubectl config set-credentials circle-ci --token="$CIRCLE_OIDC_TOKEN"
 
+      - helm/install-helm-client:
+          version: v3.8.1
+
       - run:
           name: "Prepare secrets yaml"
           command: envsubst < values/secrets.yaml.tpl > secrets.yaml
 
       - run:
-          name: "test"
-          command: base64 -w0 secrets.yaml
-
-      - run:
-          name: "test kubectl"
-          command: |
-            kubectl -n matomo get pods
+          name: "Install matomo chart"
+          command: helm -n matomo upgrade --install matomo --values secrets.yaml --values values/matomo.yaml charts/matomo/
 
 orbs:
   helm: circleci/helm@1.2.0
@@ -74,12 +46,8 @@ workflows:
   deploy-workflow:
     jobs:
       - install:
-          filters:
-            branches:
-              only: main
-      - oidc:
           context:
             - matomo
           filters:
             branches:
-              only: oidc-test
+              only: main
