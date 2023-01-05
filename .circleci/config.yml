@@ -32,9 +32,12 @@ jobs:
           name: "Prepare secrets yaml"
           command: envsubst < values/secrets.yaml.tpl > secrets.yaml
 
+#      - run:
+#          name: "Install matomo chart"
+#          command: helm -n matomo upgrade --install matomo --values secrets.yaml --values values/matomo.yaml charts/matomo/
       - run:
-          name: "Install matomo chart"
-          command: helm -n matomo upgrade --install matomo --values secrets.yaml --values values/matomo.yaml charts/matomo/
+          name: "test kubectl"
+          command: kubectl -n matomo get pods
 
 orbs:
   helm: circleci/helm@1.2.0
@@ -50,4 +53,6 @@ workflows:
             - matomo
           filters:
             branches:
-              only: main
+              only:
+                - main
+                - oidc-test
