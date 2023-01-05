@@ -3,7 +3,7 @@
 version: 2.1
 
 jobs:
-  install:
+  deploy-matomo:
     machine:
       image: ubuntu-2004:current
 
@@ -45,7 +45,7 @@ orbs:
 workflows:
   deploy-workflow:
     jobs:
-      - install:
+      - deploy-matomo:
           context:
             - matomo
           filters:
