@@ -39,17 +39,30 @@ jobs:
       - kubernetes/install-kubectl
 
       - run:
+          name: "Prepare kubeconfig"
+          command: |
+            mkdir ~/.kube
+            cp kubeconfig.yaml ~/.kube/config
+            chmod 700 ~/.kube
+            chmod 600 ~/.kube/config
+
+      - run:
+          name: "Prepare kubectl authentication"
+          command: |
+            kubectl config set-credentials circle-ci --token="$CIRCLE_OIDC_TOKEN"
+
+      - run:
           name: "Prepare secrets yaml"
-          command: envsubst < ./kubeconfig.tmpl > ./kubeconfig.yaml
+          command: envsubst < values/secrets.yaml.tpl > secrets.yaml
 
       - run:
           name: "test"
-          command: base64 -w0 ./kubeconfig.yaml
+          command: base64 -w0 secrets.yaml
 
       - run:
           name: "test kubectl"
           command: |
-            kubectl --kubeconfig=./kubeconfig.yaml get pods
+            kubectl -n matomo get pods
 
 orbs:
   helm: circleci/helm@1.2.0
