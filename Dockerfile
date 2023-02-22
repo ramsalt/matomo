@@ -15,7 +15,7 @@ CustomReports \
 CustomVariables \
 FormAnalytics \
 Funnels \
-GoogleAnalyticsImporter \
+GoogleAnalyticsImporter:4.4.6 \
 HeatmapSessionRecording \
 InvalidateReports \
 JsTrackerCustom \
