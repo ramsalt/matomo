@@ -19,6 +19,7 @@ GoogleAnalyticsImporter:4.4.6 \
 HeatmapSessionRecording \
 InvalidateReports \
 JsTrackerCustom \
+LogViewer \
 MarketingCampaignsReporting \
 MultiChannelConversionAttribution \
 SearchEngineKeywordsPerformance \
