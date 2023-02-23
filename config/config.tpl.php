@@ -22,6 +22,9 @@ proxy_host_headers[] = "${MATOMO_PROXY_HOST_HEADER}"
 
 action_title_category_delimiter = /
 
+[log]
+log_level = DEBUG
+
 [mail]
 transport = "smtp"
 port = "25"
