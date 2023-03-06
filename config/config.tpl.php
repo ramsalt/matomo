@@ -24,7 +24,7 @@ action_title_category_delimiter = /
 
 [log]
 log_writers[] = database
-log_level = DEBUG
+log_level = INFO
 
 [mail]
 transport = "smtp"
