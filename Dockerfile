@@ -1,5 +1,5 @@
-ARG MATOMO_VERSION="4.13"
-ARG WODBY_TAG="1.50.11"
+ARG MATOMO_VERSION="4.14"
+ARG WODBY_TAG="1.52.0"
 
 FROM wodby/matomo:${MATOMO_VERSION}-${WODBY_TAG}
 
@@ -15,7 +15,7 @@ CustomReports \
 CustomVariables \
 FormAnalytics \
 Funnels \
-GoogleAnalyticsImporter:4.4.6 \
+GoogleAnalyticsImporter \
 HeatmapSessionRecording \
 InvalidateReports \
 JsTrackerCustom \
