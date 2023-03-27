@@ -36,7 +36,7 @@ CircleCI identifies to the Matomo Kubernetes cluster via OIDC. See:
 Due to the way this is implemented by both CircleCI and OVH the job identifies as the user who initiated the current CI run. 
 The format of the username (`sub` field) is ["org/ORGANIZATION_ID/project/PROJECT_ID/user/USER_ID"](https://circleci.com/docs/openid-connect-tokens/#format-of-the-openid-connect-id-token).
 
-So for any user who should be allowed to initiate Matomo deployments, their username needs to be added to the [RoleBinding](system/rbac/rolebinding_circle-ci.yaml) by a cluser admin.
+So for any user who should be allowed to initiate Matomo deployments, their username needs to be added to the [RoleBinding](system/rbac/rolebinding_circle-ci.yaml) by a cluster admin.
 
 ## Matomo configuration
 
