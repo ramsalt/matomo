@@ -41,4 +41,5 @@ COPY --chown=wodby:wodby config /usr/src/matomo-config
 # Revert to non-privileged user
 USER 1000
 
+COPY bin /usr/local/bin/
 COPY init /docker-entrypoint-init.d/
