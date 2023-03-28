@@ -149,7 +149,7 @@ spec:
             {{- toYaml .Values.opensmtpd.resources | nindent 12 }}
 
         - name: crond
-          args:
+          command:
             - sudo
             - '-E'
             - crond
