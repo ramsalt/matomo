@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # in cron container, skip this script
-if [[ -n "${SKIP_MATOMO_CONFIG}" ]]; then
+if [[ -n "${MATOMO_SKIP_CUSTOM_CONFIG}" ]]; then
     exit 0
 fi
 
