@@ -7,4 +7,4 @@ metadata:
 data:
   www-data: |
     */5 * * * * /usr/local/bin/matomo-console core:run-scheduled-tasks
-      7 * * * * /usr/local/bin/matomo-console core:archive
+      1 * * * * /usr/local/bin/matomo-console core:archive
