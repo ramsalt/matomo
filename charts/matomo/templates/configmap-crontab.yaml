@@ -6,5 +6,5 @@ metadata:
     {{- include "matomo.labels" . | nindent 4 }}
 data:
   www-data: |
-    */5 * * * * /usr/local/bin/php -d memory_limit=-1 /var/www/html/console core:run-scheduled-tasks
-      1 * * * * /usr/local/bin/php -d memory_limit=-1 /var/www/html/console core:archive
+    */5 * * * * /usr/local/bin/matomo-console core:run-scheduled-tasks
+      1 * * * * /usr/local/bin/matomo-console /var/www/html/console core:archive
