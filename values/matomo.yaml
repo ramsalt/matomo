@@ -15,7 +15,7 @@ matomo:
     user: "matomo"
   php:
     memoryLimit: "512M"
-    cliMemoryLimit: "512M"
+    cliMemoryLimit: "-1"
     maxExecutionTime: "30"
     maxInputVars: "1000"
     postMaxSize: "40M"

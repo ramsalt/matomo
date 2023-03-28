@@ -149,7 +149,7 @@ spec:
             {{- toYaml .Values.opensmtpd.resources | nindent 12 }}
 
         - name: crond
-          command:
+          args:
             - sudo
             - '-E'
             - crond
@@ -161,6 +161,8 @@ spec:
               value: "no"
             - name: SSMTP_MAILHUB
               value: "127.0.0.1:25"
+            - name: MATOMO_SKIP_CUSTOM_CONFIG
+              value: "yes"
           envFrom:
             - configMapRef:
                 name: {{ include "matomo.fullname" . }}-env
