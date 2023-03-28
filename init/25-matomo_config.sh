@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# in cron container, skip this script
+if [[ -n "${SKIP_MATOMO_CONFIG}" ]]; then
+    exit 0
+fi
+
 set -e
 
 export MATOMO_DATABASE_HOST="${MATOMO_DATABASE_HOST:-mariadb}"
