@@ -23,7 +23,7 @@ LogViewer \
 MarketingCampaignsReporting \
 MultiChannelConversionAttribution \
 SearchEngineKeywordsPerformance \
-UsersFlow \
+UsersFlow:4.1.1 \
 "
 
 WORKDIR /usr/src/matomo-plugins
