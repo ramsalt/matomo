@@ -1,5 +1,5 @@
-ARG MATOMO_VERSION="4.14"
-ARG WODBY_TAG="1.53.1"
+ARG MATOMO_VERSION="4.15"
+ARG WODBY_TAG="1.55.0"
 
 FROM wodby/matomo:${MATOMO_VERSION}-${WODBY_TAG}
 
@@ -11,18 +11,18 @@ RUN apk add --no-cache gettext
 ARG LICENSE_KEY
 ARG PLUGIN_LIST=" \
 AbTesting \
-CustomReports:4.1.4 \
+CustomReports:4.1.7 \
 CustomVariables:4.1.3 \
-FormAnalytics:4.4.1 \
+FormAnalytics:4.4.3 \
 Funnels:4.1.6 \
-GoogleAnalyticsImporter:4.6.4 \
+GoogleAnalyticsImporter:4.6.8 \
 HeatmapSessionRecording \
 InvalidateReports:4.1.1 \
 JsTrackerCustom:4.0.2 \
 LogViewer:4.1.1 \
 MarketingCampaignsReporting:4.1.3 \
-MultiChannelConversionAttribution:4.3.1 \
-SearchEngineKeywordsPerformance:4.5.3 \
+MultiChannelConversionAttribution:4.3.2 \
+SearchEngineKeywordsPerformance:4.5.4 \
 UsersFlow:4.1.1 \
 "
 
