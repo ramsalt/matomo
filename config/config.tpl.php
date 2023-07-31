@@ -22,6 +22,28 @@ proxy_host_headers[] = "${MATOMO_PROXY_HOST_HEADER}"
 
 action_title_category_delimiter = /
 
+; maximum number of rows for any of the Referers tables (keywords, search engines, campaigns, etc.), and Custom variables names
+datatable_archiving_maximum_rows_referrers = 5000
+; maximum number of rows for any of the Referers subtable (search engines by keyword, keyword by campaign, etc.), and Custom variables values
+datatable_archiving_maximum_rows_subtable_referrers = 5000
+
+; maximum number of rows for any of the Actions tables (pages, downloads, outlinks)
+datatable_archiving_maximum_rows_actions = 5000
+; maximum number of rows for pages in categories (sub pages, when clicking on the + for a page category)
+datatable_archiving_maximum_rows_subtable_actions = 5000
+
+; maximum number of rows for any of the Events tables (Categories, Actions, Names)
+datatable_archiving_maximum_rows_events = 5000
+; maximum number of rows for sub-tables of the Events tables (eg. for the subtables Categories>Actions or Categories>Names).
+datatable_archiving_maximum_rows_subtable_events = 100
+
+
+; maximum number of rows for the Site Search table
+ datatable_archiving_maximum_rows_site_search = 5000
+
+; maximum number of rows for the User ID report
+datatable_archiving_maximum_rows_userid_users = 5000
+
 [log]
 log_writers[] = database
 log_level = INFO
