@@ -10,13 +10,13 @@ RUN apk add --no-cache gettext
 
 ARG LICENSE_KEY
 ARG PLUGIN_LIST=" \
-AbTesting \
+AbTesting:4.2.6 \
 CustomReports:4.1.7 \
 CustomVariables:4.1.3 \
 FormAnalytics:4.4.3 \
 Funnels:4.1.6 \
 GoogleAnalyticsImporter:4.6.11 \
-HeatmapSessionRecording \
+HeatmapSessionRecording:4.5.10 \
 InvalidateReports:4.1.1 \
 JsTrackerCustom:4.0.2 \
 LogViewer:4.1.2 \
