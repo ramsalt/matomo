@@ -15,14 +15,14 @@ CustomReports:4.1.7 \
 CustomVariables:4.1.3 \
 FormAnalytics:4.4.3 \
 Funnels:4.1.6 \
-GoogleAnalyticsImporter:4.6.8 \
+GoogleAnalyticsImporter:4.6.11 \
 HeatmapSessionRecording \
 InvalidateReports:4.1.1 \
 JsTrackerCustom:4.0.2 \
-LogViewer:4.1.1 \
+LogViewer:4.1.2 \
 MarketingCampaignsReporting:4.1.3 \
-MultiChannelConversionAttribution:4.3.2 \
-SearchEngineKeywordsPerformance:4.5.4 \
+MultiChannelConversionAttribution:4.3.3 \
+SearchEngineKeywordsPerformance:4.5.5 \
 UsersFlow:4.1.1 \
 "
 
