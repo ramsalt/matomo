@@ -21,10 +21,6 @@ repositories:
     url: https://kubernetes-sigs.github.io/external-dns/
 
 releases:
-  - name: namespaces
-    namespace: default
-    chart: ./namespaces
-
   - name: ingress-nginx
     namespace: ingress-nginx
     version: "4.7.1"
