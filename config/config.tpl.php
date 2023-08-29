@@ -20,6 +20,9 @@ salt = "4325a52bf1bc4bad5ed57c76d13aed56"
 proxy_client_headers[] = "${MATOMO_PROXY_CLIENT_HEADER}"
 proxy_host_headers[] = "${MATOMO_PROXY_HOST_HEADER}"
 
+enable_browser_archiving_triggering = 0
+enable_sql_optimize_queries = 0
+
 action_title_category_delimiter = /
 
 ; maximum number of rows for any of the Referers tables (keywords, search engines, campaigns, etc.), and Custom variables names
@@ -45,8 +48,14 @@ datatable_archiving_maximum_rows_subtable_events = 100
 datatable_archiving_maximum_rows_userid_users = 500000
 
 [log]
-log_writers[] = database
-log_level = INFO
+log_writers[] = "file"
+log_writers[] = "screen"
+; log_level = INFO
+logger_file_path = /tmp/logs/matomo.log
+
+[CustomReports]
+custom_reports_max_execution_time = 2700
+custom_reports_disabled_dimensions = "CoreHome.VisitLastActionDate"
 
 [mail]
 transport = "smtp"
