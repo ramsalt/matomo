@@ -39,19 +39,19 @@ nginx:
 crond:
   resources:
     limits:
+      cpu: 4000m
+      memory: 2048Mi
+    requests:
       cpu: 2000m
       memory: 1024Mi
-    requests:
-      cpu: 200m
-      memory: 768Mi
 
 resources:
   limits:
-    cpu: 2500m
-    memory: 12Gi
+    cpu: 6000m
+    memory: 24Gi
   requests:
-    cpu: 500m
-    memory: 6Gi
+    cpu: 2000m
+    memory: 12Gi
 
 ingress:
   enabled: true
