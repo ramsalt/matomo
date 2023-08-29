@@ -56,14 +56,29 @@ spec:
             - name: fcgi
               containerPort: 9000
               protocol: TCP
+          livenessProbe:
+            exec:
+              command: [make, check-ready, '-f', /usr/local/bin/actions.mk]
+            initialDelaySeconds: 30
+            failureThreshold: 2
+            timeoutSeconds: 3
+            periodSeconds: 30
           readinessProbe:
             exec:
               command: [make, check-ready, '-f', /usr/local/bin/actions.mk]
             initialDelaySeconds: 5
             failureThreshold: 2
-            successThreshold: 3
+            successThreshold: 1
             timeoutSeconds: 3
             periodSeconds: 30
+          startupProbe:
+            exec:
+              command: [make, check-ready, '-f', /usr/local/bin/actions.mk]
+            initialDelaySeconds: 5
+            failureThreshold: 60
+            successThreshold: 1
+            timeoutSeconds: 3
+            periodSeconds: 5
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
