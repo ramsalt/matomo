@@ -23,6 +23,7 @@ jobs:
       - run:
           name: "Prepare kubectl authentication"
           command: |
+            echo "Using oidc token for $CIRCLE_USERNAME"
             kubectl config set-credentials circle-ci --token="$CIRCLE_OIDC_TOKEN"
 
       - helm/install-helm-client:
