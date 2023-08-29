@@ -27,7 +27,11 @@ data:
   PHP_POST_MAX_SIZE: {{ .Values.matomo.php.postMaxSize | quote }}
   PHP_UPLOAD_MAX_FILESIZE: {{ .Values.matomo.php.uploadMaxFilesize | quote }}
   PHP_CLI_MEMORY_LIMIT: {{ .Values.matomo.php.cliMemoryLimit | quote }}
-  PHP_FPM_PM_MAX_CHILDREN: {{ .Values.matomo.php.maxChildren | quote }}
+  PHP_FPM_PM_MAX_CHILDREN: {{ .Values.matomo.php.fpmPmMaxChildren | quote }}
+  PHP_FPM_PM_MAX_REQUESTS: {{ .Values.matomo.php.fpmPmMaxRequests | quote }}
+  PHP_FPM_PM_MAX_SPARE_SERVERS: {{ .Values.matomo.php.fpmPmMaxSpareServers | quote }}
+  PHP_FPM_PM_MIN_SPARE_SERVERS: {{ .Values.matomo.php.fpmPmMinSpareServers | quote }}
+  PHP_FPM_PM_START_SERVERS: {{ .Values.matomo.php.fpmPmStartServers | quote }}
   PHP_SENDMAIL_PATH: {{ .Values.matomo.php.sendmailPath | quote }}
   MATOMO_ENABLE_PROXY_URI_HEADER: {{ .Values.matomo.enableProxyUriHeader | quote }}
   MATOMO_ENABLE_ASSUME_SECURE_PROTOCOL: {{ .Values.matomo.assumeSecureProtocol | quote }}
