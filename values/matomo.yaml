@@ -14,9 +14,9 @@ matomo:
     name: "matomo"
     user: "matomo"
   php:
-    memoryLimit: "2048M"
+    memoryLimit: "6144M"
     cliMemoryLimit: "-1"
-    maxExecutionTime: "60"
+    maxExecutionTime: "120"
     maxInputVars: "1000"
     postMaxSize: "40M"
     uploadMaxFilesize: "40M"
