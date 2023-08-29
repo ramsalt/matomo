@@ -14,11 +14,13 @@ Kubernetes cluster as Matomo frontend.
 
 Change to `system/` and adjust the configuration as necessary.
 
-Run helmfile to apply the changes. For requirements see the [helmfile documentation](https://github.com/roboll/helmfile):
+Run helmfile to apply the changes. For requirements see the [helmfile documentation](https://github.com/helmfile/helmfile):
 
 ```
 helmfile apply
 ```
+
+> ***Note:** changes in `namespaces` and `rbac` are not managed by helmfile and need to be applied with the usual `kubectl apply -f`
 
 ## Matomo Deployment
 
