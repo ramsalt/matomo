@@ -62,6 +62,7 @@ transport = "smtp"
 port = "25"
 host = "127.0.0.1"
 encryption = "none"
+defaultHostnameIfEmpty = matomo.ramsalt.com
 
 [PluginsInstalled]
 PluginsInstalled[] = "CustomDimensions"
