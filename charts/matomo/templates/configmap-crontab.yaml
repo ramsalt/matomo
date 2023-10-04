@@ -6,5 +6,14 @@ metadata:
     {{- include "matomo.labels" . | nindent 4 }}
 data:
   www-data: |
+    # Run scheduled taks every five minutes
     */5 * * * * /usr/local/bin/matomo-console core:run-scheduled-tasks
+
+    # Process logs ever hour
       1 * * * * /usr/local/bin/matomo-console core:archive
+
+    # Re-generate Matomo JavaScript Tracker file every minute
+    * * * * * php /path/to/matomo/console custom-matomo-js:update --no-ansi > /dev/null
+
+    # Re-generate Matomo Tag Manager containers every minute
+    * * * * * php /path/to/matomo/console tagmanager:regenerate-released-containers --no-ansi > /dev/null
