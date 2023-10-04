@@ -12,6 +12,7 @@ data:
     # Process logs ever hour
       1 * * * * /usr/local/bin/matomo-console core:archive
 
+  wodby: |
     # Re-generate Matomo JavaScript Tracker file every minute
     * * * * * php /path/to/matomo/console custom-matomo-js:update --no-ansi > /dev/null
 
