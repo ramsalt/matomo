@@ -205,8 +205,7 @@ spec:
             - name: app
               mountPath: /var/www/html
             - name: crontab
-              mountPath: /etc/crontabs/www-data
-              subPath: www-data
+              mountPath: /etc/crontabs
 
       volumes:
         - name: tmp
