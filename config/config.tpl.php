@@ -64,6 +64,12 @@ host = "127.0.0.1"
 encryption = "none"
 defaultHostnameIfEmpty = matomo.ramsalt.com
 
+[TrackerJsCdnSync]
+type = "bunny-cdn"
+storageZoneName = "matomo"
+apiAccessKey = "45f41c05-5f87-4e5c-945e265c87f2-fe47-419e"
+storageZoneRegion = "de"
+
 [PluginsInstalled]
 PluginsInstalled[] = "CustomDimensions"
 PluginsInstalled[] = "CoreVue"
