@@ -69,7 +69,7 @@ type = "bunny-cdn"
 storageZoneName = "matomo"
 apiAccessKey = "45f41c05-5f87-4e5c-945e265c87f2-fe47-419e"
 storageZoneRegion = "de"
-cdnUrl = "ramsalt.b-cdn.net"
+cdnUrl = "matomo-cdn-ramsalt.b-cdn.net"
 
 [PluginsInstalled]
 PluginsInstalled[] = "CustomDimensions"
