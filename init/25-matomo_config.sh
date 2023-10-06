@@ -47,8 +47,9 @@ chown wodby:www-data "${APP_ROOT}/config/config.ini.php"
 chmod 664 "${APP_ROOT}/config/config.ini.php"
 
 # Fix permissions for tag manager
-chown wodby:www-data "${APP_ROOT}/js"
+chown -R wodby:www-data "${APP_ROOT}/js"
 chmod 775 "${APP_ROOT}/js"
+chmod 664 "${APP_ROOT}/js/"*
 
 # Install plugins
 cp -r /usr/src/matomo-plugins/* "${APP_ROOT}/plugins"
@@ -58,3 +59,8 @@ chgrp -R www-data "${APP_ROOT}/plugins"
 # Activate plugins
 PLUGINS="TagManager $(find /usr/src/matomo-plugins/* -maxdepth 0 -type d -printf "%f ")"
 activate_plugin $PLUGINS
+
+# Fix permissions for tag manager (again)
+chown -R wodby:www-data "${APP_ROOT}/js"
+chmod 775 "${APP_ROOT}/js"
+chmod 664 "${APP_ROOT}/js/"*
