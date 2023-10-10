@@ -66,8 +66,8 @@ defaultHostnameIfEmpty = matomo.ramsalt.com
 
 [TrackerJsCdnSync]
 type = "bunny-cdn"
-storageZoneName = "matomo"
-apiAccessKey = "45f41c05-5f87-4e5c-945e265c87f2-fe47-419e"
+storageZoneName = "matomo-tag-manager"
+apiAccessKey = "4323f323-1f89-4a65-9c7a0c85dcfc-fdb5-402a"
 storageZoneRegion = "de"
 cdnUrl = "matomo-cdn-ramsalt.b-cdn.net"
 
