@@ -33,7 +33,14 @@ RUN set -e && \
         curl -f -sS --output $PLUGIN_NAME.zip --data "access_token=$LICENSE_KEY" "https://plugins.matomo.org/api/2.0/plugins/$PLUGIN_NAME/download/${PLUGIN_VERSION:-latest}?matomo=$MATOMO_VERSION" && \
         unzip $PLUGIN_NAME.zip && \
         rm $PLUGIN_NAME.zip || exit 1; \
-    done
+    done && \
+    PLUGIN_NAME="TrackerJsCdnSync" && \
+    PLUGIN_VERSION="0.0.13" && \
+    curl -f -LsS --output $PLUGIN_NAME.zip "https://github.com/SARAVANA1501/plugin-TrackerJsCdnSync/archive/refs/tags/${PLUGIN_VERSION}.zip" && \
+    unzip $PLUGIN_NAME.zip && \
+    rm $PLUGIN_NAME.zip || exit 1; \
+    mv plugin-${PLUGIN_NAME}-${PLUGIN_VERSION} ${PLUGIN_NAME} && \
+    sed -i 's/"piwik": ">=2.9.0,<4.15.1"/"piwik": ">=2.9.0,<=4.15.1"/' ${PLUGIN_NAME}/plugin.json
 
 WORKDIR /var/www/html
 COPY --chown=wodby:wodby config /usr/src/matomo-config
