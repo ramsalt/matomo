@@ -21,6 +21,7 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap-env.yaml") . | sha256sum }}
         checksum/crontab: {{ include (print $.Template.BasePath "/configmap-crontab.yaml") . | sha256sum }}
+        checksum/nginx: {{ include (print $.Template.BasePath "/configmap-nginx.yaml") . | sha256sum }}
         checksum/env: {{ include (print $.Template.BasePath "/secret-env.yaml") . | sha256sum }}
         checksum/tls: {{ include (print $.Template.BasePath "/secret-tls.yaml") . | sha256sum }}
       {{- with .Values.podAnnotations }}
@@ -92,7 +93,7 @@ spec:
         - name: nginx
           env:
             - name: NGINX_VHOST_PRESET
-              value: matomo
+              value: matomo-cluster
             - name: NGINX_SET_REAL_IP_FROM
               value: 0.0.0.0/0
             - name: NGINX_BACKEND_HOST
@@ -138,6 +139,9 @@ spec:
           volumeMounts:
             - name: nginx-tmp
               mountPath: /tmp
+            - name: nginx-config
+              mountPath: /etc/gotpl/presets/matomo-cluster.conf.tmpl
+              subPath: matomo-cluster.conf.tmpl
             - name: app
               mountPath: /var/www/html
 
@@ -223,6 +227,9 @@ spec:
         - name: crontab
           configMap:
             name: {{ include "matomo.fullname" . }}-crontab
+        - name: nginx-config
+          configMap:
+            name: {{ include "matomo.fullname" . }}-nginx
         - name: app
           emptyDir: {}
       {{- with .Values.nodeSelector }}
