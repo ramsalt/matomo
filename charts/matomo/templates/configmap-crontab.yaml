@@ -6,6 +6,8 @@ metadata:
     {{- include "matomo.labels" . | nindent 4 }}
 data:
   www-data: |
+    MAILTO=robert@ramsalt.com
+
     # Run scheduled taks every five minutes
     */5 * * * * /usr/local/bin/matomo-console core:run-scheduled-tasks
 
