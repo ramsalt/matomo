@@ -12,7 +12,7 @@ data:
     */5 * * * * /usr/local/bin/matomo-console core:run-scheduled-tasks
 
     # Process logs ever hour
-      1 * * * * /usr/local/bin/matomo-console core:archive
+      1 * * * * /usr/local/bin/matomo-console core:archive >> /home/wodby/matomo-archive.log
 
     # Re-generate Matomo JavaScript Tracker file every minute
     * * * * * /usr/local/bin/matomo-console custom-matomo-js:update --no-ansi > /dev/null
