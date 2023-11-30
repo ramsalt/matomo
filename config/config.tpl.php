@@ -20,6 +20,8 @@ salt = "4325a52bf1bc4bad5ed57c76d13aed56"
 proxy_client_headers[] = "${MATOMO_PROXY_CLIENT_HEADER}"
 proxy_host_headers[] = "${MATOMO_PROXY_HOST_HEADER}"
 
+minimum_memory_limit_when_archiving = ${MATOMO_MEMORY_LIMIT_WHEN_ARCHIVING}
+
 enable_browser_archiving_triggering = 0
 enable_sql_optimize_queries = 0
 
