@@ -47,7 +47,7 @@ crond:
   resources:
     limits:
       cpu: 4000m
-      memory: 2048Mi
+      memory: 5110Mi
     requests:
       cpu: 2000m
       memory: 1024Mi
