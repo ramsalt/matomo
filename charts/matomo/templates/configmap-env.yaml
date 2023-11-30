@@ -39,3 +39,4 @@ data:
   MATOMO_PROXY_CLIENT_HEADER: {{ .Values.matomo.proxyClientHeader | quote }}
   MATOMO_PROXY_HOST_HEADER: {{ .Values.matomo.proxyHostHeader | quote }}
   MATOMO_MULTI_SERVER_ENVIRONMENT: {{ .Values.matomo.multiServerEnvironment | quote }}
+  MATOMO_MEMORY_LIMIT_WHEN_ARCHIVING: {{ .Values.matomo.memoryLimitWhenArchiving | quote }}

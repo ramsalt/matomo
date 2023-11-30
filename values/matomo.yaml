@@ -32,6 +32,7 @@ matomo:
   proxyClientHeader: "HTTP_X_ORIGINAL_FORWARDED_FOR"
   proxyHostHeader: "HTTP_CDN_HOST"
   multiServerEnvironment: "1"
+  memoryLimitWhenArchiving: "4096"
 
 nginx:
   resources:

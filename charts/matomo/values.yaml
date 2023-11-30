@@ -50,6 +50,7 @@ matomo:
   proxyClientHeader: ""
   proxyHostHeader: ""
   multiServerEnvironment: "no"
+  memoryLimitWhenArchiving: "768"
 
 nginx:
   image:
