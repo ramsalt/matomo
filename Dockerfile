@@ -1,5 +1,5 @@
-ARG MATOMO_VERSION="4.15"
-ARG WODBY_TAG="1.57.5"
+ARG MATOMO_VERSION="4.16"
+ARG WODBY_TAG="1.58.1"
 
 FROM wodby/matomo:${MATOMO_VERSION}-${WODBY_TAG}
 
@@ -13,10 +13,10 @@ ARG PLUGIN_LIST=" \
 AbTesting:4.2.6 \
 CustomReports:4.1.7 \
 CustomVariables:4.1.3 \
-FormAnalytics:4.4.3 \
+FormAnalytics:4.4.4 \
 Funnels:4.1.7 \
 GoogleAnalyticsImporter:4.6.11 \
-HeatmapSessionRecording:4.6.1 \
+HeatmapSessionRecording:4.6.4 \
 InvalidateReports:4.1.1 \
 JsTrackerCustom:4.0.2 \
 LogViewer:4.1.2 \
