@@ -13,7 +13,7 @@ ARG PLUGIN_LIST=" \
 AbTesting:4.2.6 \
 CustomReports:4.1.7 \
 CustomVariables:4.1.3 \
-FormAnalytics:4.4.4 \
+FormAnalytics:4.4.5 \
 Funnels:4.1.7 \
 GoogleAnalyticsImporter:4.6.11 \
 HeatmapSessionRecording:4.6.4 \
