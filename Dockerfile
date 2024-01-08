@@ -1,5 +1,5 @@
-ARG MATOMO_VERSION="4.16"
-ARG WODBY_TAG="1.58.1"
+ARG MATOMO_VERSION="5.0"
+ARG WODBY_TAG="1.62.3"
 
 FROM wodby/matomo:${MATOMO_VERSION}-${WODBY_TAG}
 
@@ -10,20 +10,20 @@ RUN apk add --no-cache gettext
 
 ARG LICENSE_KEY
 ARG PLUGIN_LIST=" \
-AbTesting:4.2.6 \
-CustomReports:4.1.7 \
-CustomVariables:4.1.3 \
-FormAnalytics:4.4.5 \
-Funnels:4.1.7 \
-GoogleAnalyticsImporter:4.6.11 \
-HeatmapSessionRecording:4.6.4 \
-InvalidateReports:4.1.1 \
-JsTrackerCustom:4.0.2 \
-LogViewer:4.1.2 \
-MarketingCampaignsReporting:4.1.3 \
-MultiChannelConversionAttribution:4.3.3 \
-SearchEngineKeywordsPerformance:4.5.5 \
-UsersFlow:4.1.1 \
+AbTesting:5.0.6 \
+CustomReports:5.0.9 \
+CustomVariables:5.0.2 \
+FormAnalytics:5.0.4 \
+Funnels:5.0.4 \
+GoogleAnalyticsImporter:5.0.7 \
+HeatmapSessionRecording:5.0.8 \
+InvalidateReports:5.0.0 \
+JsTrackerCustom:5.0.0 \
+LogViewer:5.0.1 \
+MarketingCampaignsReporting:5.0.2 \
+MultiChannelConversionAttribution:5.0.2 \
+SearchEngineKeywordsPerformance:5.0.8 \
+UsersFlow:5.0.2 \
 "
 
 WORKDIR /usr/src/matomo-plugins
