@@ -24,6 +24,7 @@ MarketingCampaignsReporting:5.0.4 \
 MultiChannelConversionAttribution:5.0.4 \
 SearchEngineKeywordsPerformance:5.0.13 \
 UsersFlow:5.0.3 \
+ChatGPT:5.2.5\
 "
 
 WORKDIR /usr/src/matomo-plugins
