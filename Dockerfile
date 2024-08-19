@@ -1,5 +1,5 @@
 ARG MATOMO_VERSION="5.1"
-ARG WODBY_TAG="1.72.3"
+ARG WODBY_TAG="1.72.6"
 
 FROM wodby/matomo:${MATOMO_VERSION}-${WODBY_TAG}
 
@@ -14,15 +14,15 @@ AbTesting:5.1.3 \
 CustomReports:5.0.15 \
 CustomVariables:5.0.2 \
 FormAnalytics:5.0.10 \
-Funnels:5.3.2 \
-GoogleAnalyticsImporter:5.0.19 \
+Funnels:5.3.3 \
+GoogleAnalyticsImporter:5.0.20 \
 HeatmapSessionRecording:5.1.5 \
 InvalidateReports:5.0.2 \
 JsTrackerCustom:5.0.1 \
 LogViewer:5.0.2 \
 MarketingCampaignsReporting:5.0.4 \
 MultiChannelConversionAttribution:5.0.4 \
-SearchEngineKeywordsPerformance:5.0.13 \
+SearchEngineKeywordsPerformance:5.0.14 \
 UsersFlow:5.0.3 \
 ChatGPT:5.2.5\
 "
