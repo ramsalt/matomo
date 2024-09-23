@@ -23,6 +23,7 @@ LogViewer:5.0.2 \
 MarketingCampaignsReporting:5.0.4 \
 MultiChannelConversionAttribution:5.0.5 \
 SearchEngineKeywordsPerformance:5.0.16 \
+TrackingSpamPrevention:5.0.3 \
 UsersFlow:5.0.4 \
 ChatGPT:5.2.5\
 "
