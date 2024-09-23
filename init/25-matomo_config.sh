@@ -57,7 +57,7 @@ chmod -R g+w "${APP_ROOT}/plugins"
 chgrp -R www-data "${APP_ROOT}/plugins"
 
 # Activate plugins
-PLUGINS="TagManager $(find /usr/src/matomo-plugins/* -maxdepth 0 -type d -printf "%f ")"
+PLUGINS="TagManager $(find /usr/src/matomo-plugins/* -maxdepth 0 -type d -name MarketingCampaignsReporting -prune -o -printf "%f ")"
 activate_plugin $PLUGINS
 
 # Fix permissions for tag manager (again)
