@@ -71,6 +71,9 @@ host = "127.0.0.1"
 encryption = "none"
 defaultHostnameIfEmpty = matomo.ramsalt.com
 
+[Plugins]
+Plugins[] = "MarketingCampaignsReporting"
+
 [PluginsInstalled]
 PluginsInstalled[] = "CustomDimensions"
 PluginsInstalled[] = "CoreVue"
