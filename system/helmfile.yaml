@@ -18,7 +18,10 @@ repositories:
     url: https://charts.jetstack.io
 
   - name: external-dns
-    url: https://kubernetes-sigs.github.io/external-dns/
+    url: https://kubernetes-sigs.github.io/external-dns
+
+  - name: vm
+    url: https://victoriametrics.github.io/helm-charts
 
 releases:
   - name: ingress-nginx
@@ -43,3 +46,9 @@ releases:
     chart: external-dns/external-dns
     values:
       - values/external-dns.yaml.gotmpl
+
+  - name: victoria-metrics-k8s-stack
+    namespace: monitoring
+    chart: vm/victoria-metrics-k8s-stack
+    values:
+      - values/victoria-metrics-k8s-stack.yaml.gotmpl
