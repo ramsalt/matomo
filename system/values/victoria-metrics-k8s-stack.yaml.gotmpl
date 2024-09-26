@@ -1,0 +1,148 @@
+global:
+  clusterLabel: matomo
+
+# -- victoria-metrics-operator dependency chart configuration.
+# -- For possible values refer to https://github.com/VictoriaMetrics/helm-charts/tree/master/charts/victoria-metrics-operator#parameters
+# -- also checkout here possible ENV variables to configure operator behaviour https://docs.victoriametrics.com/operator/vars
+victoria-metrics-operator:
+  enabled: true
+
+serviceAccount:
+  create: true
+
+# -- Enable dashboards despite it's dependency is not installed
+dashboards:
+  vmalert: false
+  operator: false
+  node-exporter-full: false
+
+# -- Create default rules for monitoring the cluster
+defaultRules:
+  create: true
+
+# -- Create default dashboards
+defaultDashboardsEnabled: false
+
+# -- Create experimental dashboards
+experimentalDashboardsEnabled: false
+
+# -- Create dashboards as CRDs (reuqires grafana-operator to be installed)
+grafanaOperatorDashboardsFormat:
+  enabled: false
+
+externalVM:
+  read:
+    url: ""
+    # bearerTokenSecret:
+    #   name: dbaas-read-access-token
+    #   key: bearerToken
+  write:
+    url: ""
+    # bearerTokenSecret:
+    #   name: dbaas-read-access-token
+    #   key: bearerToken
+
+##############
+
+# Configures vmsingle params
+vmsingle:
+  enabled: false
+
+vmcluster:
+  enabled: false
+
+alertmanager:
+  enabled: false
+
+vmalert:
+  enabled: false
+
+vmagent:
+  enabled: true
+
+  # -- (object) full spec for VMAgent CRD. Allowed values described [here](https://docs.victoriametrics.com/operator/api#vmagentspec)
+  spec:
+    port: "8429"
+    selectAllByDefault: true
+
+    remoteWrite:
+        url: https://vmauth.central-obs.ramsalt.com:443
+        bearerTokenSecret:
+            name: vmauth-token
+            key: VMAUTH_TOKEN
+        
+#################################################
+###              dependencies               #####
+#################################################
+# Grafana dependency chart configuration. For possible values refer to https://github.com/grafana/helm-charts/tree/main/charts/grafana#configuration
+grafana:
+  enabled: false
+
+# prometheus-node-exporter dependency chart configuration. For possible values refer to https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-node-exporter/values.yaml
+prometheus-node-exporter:
+  enabled: true
+
+  # -- node exporter VM scrape config
+  vmScrape:
+    # whether we should create a service scrape resource for node-exporter
+    enabled: true
+
+# kube-state-metrics dependency chart configuration. For possible values refer to https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-state-metrics/values.yaml
+kube-state-metrics:
+  enabled: true
+  ## all values for kube-state-metrics helm chart can be specified here
+
+  # -- [Scrape configuration](https://docs.victoriametrics.com/operator/api#vmservicescrapespec) for Kube State Metrics
+  vmScrape:
+    enabled: true
+
+#################################################
+###              Service Monitors           #####
+#################################################
+# Component scraping the kubelets
+kubelet:
+  enabled: true
+  vmScrapes:
+    # -- Enable scraping /metrics/cadvisor from kubelet's service
+    cadvisor:
+      enabled: true
+
+    # -- Enable scraping /metrics/probes from kubelet's service
+    probes:
+      enabled: true
+
+# Component scraping the kube api server
+kubeApiServer:
+  enabled: false
+
+# Component scraping the kube controller manager
+kubeControllerManager:
+  enabled: false
+
+# Component scraping kubeDns. Use either this or coreDns
+kubeDns:
+  enabled: false
+
+# Component scraping coreDns. Use either this or kubeDns
+coreDns:
+  enabled: false
+
+# Component scraping etcd
+kubeEtcd:
+  enabled: false
+
+# Component scraping kube scheduler
+kubeScheduler:
+  enabled: false
+
+# Component scraping kube proxy
+kubeProxy:
+  enabled: false
+
+## install vm operator crds
+crds:
+  enabled: true
+
+## install prometheus operator crds
+prometheus-operator-crds:
+  enabled: false
