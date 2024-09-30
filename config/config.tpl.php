@@ -10,6 +10,7 @@ ssl_ca = "${MATOMO_DATABASE_SSL_CA_FILE}"
 ssl_cert = "${MATOMO_DATABASE_SSL_CERT_FILE}"
 ssl_key = "${MATOMO_DATABASE_SSL_KEY_FILE}"
 charset = "utf8mb4"
+collation = "utf8mb4_0900_ai_ci"
 
 [General]
 force_ssl = ${MATOMO_ENABLE_FORCE_SSL}
