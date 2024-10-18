@@ -11,6 +11,7 @@ RUN apk add --no-cache gettext
 ARG LICENSE_KEY
 ARG PLUGIN_LIST=" \
 AbTesting:5.2.1 \
+BotTracker:5.2.16 \
 CustomReports:5.0.16 \
 CustomVariables:5.0.2 \
 FormAnalytics:5.0.11 \
