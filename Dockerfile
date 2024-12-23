@@ -11,18 +11,18 @@ RUN apk add --no-cache gettext
 ARG LICENSE_KEY
 ARG PLUGIN_LIST=" \
 AbTesting:5.2.3 \
-BotTracker:5.2.16 \
+BotTracker:5.2.18 \
 CustomReports:5.2.0 \
-CustomVariables:5.0.2 \
-FormAnalytics:5.0.13 \
+CustomVariables:5.0.3 \
+FormAnalytics:5.0.14 \
 Funnels:5.3.8 \
-GoogleAnalyticsImporter:5.0.21 \
-HeatmapSessionRecording:5.2.1 \
+GoogleAnalyticsImporter:5.0.22 \
+HeatmapSessionRecording:5.2.2 \
 InvalidateReports:5.0.2 \
 JsTrackerCustom:5.0.1 \
 LogViewer:5.0.2 \
-MarketingCampaignsReporting:5.0.4 \
-MultiChannelConversionAttribution:5.0.6 \
+MarketingCampaignsReporting:5.1.0 \
+MultiChannelConversionAttribution:5.0.7 \
 SearchEngineKeywordsPerformance:5.0.18 \
 TrackingSpamPrevention:5.0.6 \
 UsersFlow:5.0.5 \
