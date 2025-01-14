@@ -33,10 +33,11 @@ activate_plugin() {
         echo "********************************************************"
         echo "Couldn't activate plugins. See errors above for details."
         echo
-        echo "Matomo will now start regardless, but might not work as expected."
-        echo "Restart the container after fixing the problem."
+        echo "Aborting!"
         echo "********************************************************"
         echo
+
+        exit 1
     }
 }
 
