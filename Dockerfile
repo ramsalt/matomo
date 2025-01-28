@@ -12,17 +12,17 @@ ARG LICENSE_KEY
 ARG PLUGIN_LIST=" \
 AbTesting:5.2.3 \
 BotTracker:5.2.18 \
-CustomReports:5.2.1 \
-CustomVariables:5.0.3 \
+CustomReports:5.2.3 \
+CustomVariables:5.0.4 \
 FormAnalytics:5.0.14 \
 Funnels:5.3.8 \
-GoogleAnalyticsImporter:5.0.22 \
-HeatmapSessionRecording:5.2.2 \
+GoogleAnalyticsImporter:5.1.0 \
+HeatmapSessionRecording:5.2.3 \
 InvalidateReports:5.0.2 \
-JsTrackerCustom:5.0.1 \
+JsTrackerCustom:5.0.2 \
 LogViewer:5.0.2 \
-MarketingCampaignsReporting:5.1.0 \
-MultiChannelConversionAttribution:5.0.8 \
+MarketingCampaignsReporting:5.1.1 \
+MultiChannelConversionAttribution:5.0.9 \
 SearchEngineKeywordsPerformance:5.0.18 \
 TrackingSpamPrevention:5.0.7 \
 UsersFlow:5.0.5 \
