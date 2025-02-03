@@ -45,7 +45,7 @@ nginx:
 crond:
   resources:
     limits:
-      memory: 5110Mi
+      memory: 18Gi
     requests:
       cpu: 2000m
       memory: 1024Mi
