@@ -37,7 +37,6 @@ matomo:
 nginx:
   resources:
     limits:
-      cpu: 1000m
       memory: 128Mi
     requests:
       cpu: 100m
@@ -46,7 +45,6 @@ nginx:
 crond:
   resources:
     limits:
-      cpu: 4000m
       memory: 5110Mi
     requests:
       cpu: 2000m
@@ -54,7 +52,6 @@ crond:
 
 resources:
   limits:
-    cpu: 6000m
     memory: 24Gi
   requests:
     cpu: 2000m

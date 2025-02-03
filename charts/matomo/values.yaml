@@ -82,6 +82,7 @@ opensmtpd:
     password: ""
   resources:
     requests:
+      cpu: 50m
       memory: "4Mi"
   securityContext:
     allowPrivilegeEscalation: true
