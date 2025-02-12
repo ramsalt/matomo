@@ -17,7 +17,6 @@ CustomReports:5.2.3 \
 CustomVariables:5.0.4 \
 FormAnalytics:5.0.14 \
 Funnels:5.3.8 \
-GoogleAnalyticsImporter:5.1.0 \
 HeatmapSessionRecording:5.2.3 \
 InvalidateReports:5.0.2 \
 JsTrackerCustom:5.0.2 \
