@@ -10,10 +10,10 @@ RUN apk add --no-cache gettext
 
 ARG LICENSE_KEY
 ARG PLUGIN_LIST=" \
-AbTesting:5.2.3 \
+AbTesting:5.3.0 \
 AdvertisingConversionExport:5.2.2 \
 BotTracker:5.2.18 \
-CustomReports:5.2.3 \
+CustomReports:5.3.0 \
 CustomVariables:5.0.4 \
 FormAnalytics:5.0.14 \
 Funnels:5.3.8 \
