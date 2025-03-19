@@ -14,14 +14,14 @@ AbTesting:5.3.0 \
 AdvertisingConversionExport:5.2.2 \
 BotTracker:5.2.18 \
 ChatGPT:5.3.0 \
-CustomReports:5.3.2 \
+CustomReports:5.3.3 \
 CustomVariables:5.0.4 \
 FormAnalytics:5.0.14 \
 Funnels:5.3.8 \
 HeatmapSessionRecording:5.2.3 \
 InvalidateReports:5.0.2 \
 JsTrackerCustom:5.0.2 \
-LogViewer:5.0.2 \
+LogViewer:5.0.3 \
 MarketingCampaignsReporting:5.1.1 \
 MultiChannelConversionAttribution:5.0.9 \
 SearchEngineKeywordsPerformance:5.0.19 \
