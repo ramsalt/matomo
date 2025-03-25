@@ -5,12 +5,15 @@ controller:
 
   kind: DaemonSet
 
+  allowSnippetAnnotations: true
+
   config:
     use-proxy-protocol: "true"
     real-ip-header: "proxy_protocol"
     use-forwarded-headers: "true"
     proxy-buffer-size: "64k"
     proxy-real-ip-cidr: "0.0.0.0/0"
+    annotations-risk-level: Critical
 
   service:
     externalTrafficPolicy: Local
@@ -23,7 +26,6 @@ controller:
       cpu: 15m
     limits:
       memory: 200Mi
-      cpu: 500m
 
   podSecurityContext:
     runAsNonRoot: true
