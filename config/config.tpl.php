@@ -41,7 +41,7 @@ datatable_archiving_maximum_rows_subtable_referrers = 500000
 ; maximum number of rows for any of the Actions tables (pages, downloads, outlinks)
 datatable_archiving_maximum_rows_actions = 500000
 ; maximum number of rows for pages in categories (sub pages, when clicking on the + for a page category)
-datatable_archiving_maximum_rows_subtable_actions = 60000
+datatable_archiving_maximum_rows_subtable_actions = 50001
 
 ; maximum number of rows for any of the Events tables (Categories, Actions, Names)
 datatable_archiving_maximum_rows_events = 500000
