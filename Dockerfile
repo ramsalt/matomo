@@ -19,7 +19,7 @@ FormAnalytics:5.1.1 \
 HeatmapSessionRecording:5.2.6 \
 InvalidateReports:5.0.2 \
 JsTrackerCustom:5.0.2 \
-LogViewer:5.0.3 \
+LogViewer:5.0.4 \
 MarketingCampaignsReporting:5.1.2 \
 SearchEngineKeywordsPerformance:5.0.23 \
 TrackingSpamPrevention:5.0.8 \
