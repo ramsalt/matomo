@@ -12,7 +12,6 @@ ARG LICENSE_KEY
 ARG PLUGIN_LIST=" \
 AdvertisingConversionExport:5.2.5 \
 BotTracker:5.2.18 \
-ChatGPT:5.3.0 \
 CustomReports:5.4.3 \
 CustomVariables:5.0.4 \
 FormAnalytics:5.1.1 \
