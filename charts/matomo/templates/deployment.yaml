@@ -13,6 +13,7 @@ spec:
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 1
+      minReadySeconds: 120
   selector:
     matchLabels:
       {{- include "matomo.selectorLabels" . | nindent 6 }}
