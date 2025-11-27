@@ -8,12 +8,12 @@ spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
+  minReadySeconds: 120
   strategy:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 1
-      minReadySeconds: 120
   selector:
     matchLabels:
       {{- include "matomo.selectorLabels" . | nindent 6 }}
