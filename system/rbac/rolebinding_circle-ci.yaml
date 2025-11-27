@@ -9,10 +9,14 @@ roleRef:
   kind: ClusterRole
   name: edit
 subjects:
-# robert@ramsalt.com
+# robert.wunderer+circleci@caprisys.at
 - apiGroup: rbac.authorization.k8s.io
   kind: User
   name: https://oidc.circleci.com/org/3836592d-c1c3-4157-8c67-7857933d6fbc#org/3836592d-c1c3-4157-8c67-7857933d6fbc/project/96a7d787-41c1-4e3f-b725-24b36e474f15/user/7c8b93bd-a437-42e4-a89f-e89a0d599a12
+# robert@ramsalt.com
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: https://oidc.circleci.com/org/3836592d-c1c3-4157-8c67-7857933d6fbc#org/3836592d-c1c3-4157-8c67-7857933d6fbc/project/96a7d787-41c1-4e3f-b725-24b36e474f15/user/fe1f9162-b07e-4b26-b38d-190ae285b06b
 # automated build from push
 - apiGroup: rbac.authorization.k8s.io
   kind: User
