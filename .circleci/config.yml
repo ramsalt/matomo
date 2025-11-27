@@ -1,54 +1,11 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-
 jobs:
-  deploy-matomo:
-    machine:
-      image: ubuntu-2004:current
-
+  build:
+    docker:
+      - image: alpine:3.15
     steps:
-      - checkout
-
-      - kubernetes/install-kubectl
-
       - run:
-          name: "Prepare kubeconfig"
+          name: The First Step
           command: |
-            mkdir ~/.kube
-            cp kubeconfig.yaml ~/.kube/config
-            chmod 700 ~/.kube
-            chmod 600 ~/.kube/config
-
-      - run:
-          name: "Prepare kubectl authentication"
-          command: |
-            echo "Using oidc token for $CIRCLE_USERNAME"
-            kubectl config set-credentials circle-ci --token="$CIRCLE_OIDC_TOKEN"
-
-      - helm/install-helm-client:
-          version: v3.8.1
-
-      - run:
-          name: "Prepare secrets yaml"
-          command: envsubst < values/secrets.yaml.tpl > secrets.yaml
-
-      - run:
-          name: "Install matomo chart"
-          command: helm -n matomo upgrade --install matomo --values secrets.yaml --values values/matomo.yaml charts/matomo/
-
-orbs:
-  helm: circleci/helm@1.2.0
-  kubernetes: circleci/kubernetes@1.3.1
-
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
-workflows:
-  deploy-workflow:
-    jobs:
-      - deploy-matomo:
-          context:
-            - matomo
-          filters:
-            branches:
-              only: main
+            echo 'Hello World!'
+            echo 'This is the delivery pipeline'
