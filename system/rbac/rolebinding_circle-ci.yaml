@@ -16,4 +16,4 @@ subjects:
 # automated build from push
 - apiGroup: rbac.authorization.k8s.io
   kind: User
-  name: https://oidc.circleci.com/org/3836592d-c1c3-4157-8c67-7857933d6fbc#org/3836592d-c1c3-4157-8c67-7857933d6fbc/project/d5ad971b-56db-4d91-921a-81bc777b9ac8/user/0989fcb2-c8d2-43ed-bfdd-3ff63487e121
+  name: https://oidc.circleci.com/org/3836592d-c1c3-4157-8c67-7857933d6fbc#org/3836592d-c1c3-4157-8c67-7857933d6fbc/project/96a7d787-41c1-4e3f-b725-24b36e474f15/user/7c8b93bd-a437-42e4-a89f-e89a0d599a12
