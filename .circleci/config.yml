@@ -35,7 +35,10 @@ jobs:
 
       - run:
           name: "Install matomo chart"
-          command: helm -n matomo upgrade --install matomo --values secrets.yaml --values values/matomo.yaml charts/matomo/
+          command: |
+            echo "reponame: $CIRCLE_PROJECT_REPONAME"
+            echo "project username: $CIRCLE_PROJECT_USERNAME"
+            echo "circle username: $CIRCLE_USERNAME"
 
 orbs:
   helm: circleci/helm@1.2.0
