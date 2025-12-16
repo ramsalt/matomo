@@ -30,7 +30,7 @@ jobs:
       - checkout
 
       - helm/install_helm_client:
-          version: v3.8.2
+          version: v4.0.2
 
       - run:
           name: "Package chart"
