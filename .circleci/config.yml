@@ -125,6 +125,7 @@ workflows:
               only: main
 
       - publish-chart:
+          args: --since=HEAD^
           context:
             - matomo
           requires:
