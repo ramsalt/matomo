@@ -1,0 +1,9 @@
+# compare chart against main branch
+remote: origin
+target-branch: main
+chart-dirs:
+  - charts
+chart-yaml-schema:
+  .ctconfig/chart_schema.yaml
+lint-conf:
+  .ctconfig/lintconf.yaml

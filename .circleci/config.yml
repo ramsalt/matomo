@@ -8,9 +8,9 @@ jobs:
       image: ubuntu-2004:current
 
     parameters:
-      config-file:
+      args:
         type: string
-        default: ct.yaml
+        default: ""
 
     steps:
       - checkout
@@ -19,7 +19,8 @@ jobs:
           helm-client-version: v3.8.2
 
       - chart-testing/lint:
-          config: .circleci/<< parameters.config-file >>
+          config: .ctconfig/ct.yaml
+          extra-args: << parameters.args >>
 
   publish-chart:
     machine:
@@ -28,7 +29,7 @@ jobs:
     steps:
       - checkout
 
-      - helm/install-helm-client:
+      - helm/install_helm_client:
           version: v3.8.2
 
       - run:
@@ -51,7 +52,7 @@ jobs:
     steps:
       - checkout
 
-      - kubernetes/install-kubectl
+      - kubernetes/install_kubectl
 
       - run:
           name: "Prepare kubeconfig"
@@ -67,7 +68,7 @@ jobs:
             echo "Using oidc token for $CIRCLE_USERNAME"
             kubectl config set-credentials circle-ci --token="$CIRCLE_OIDC_TOKEN"
 
-      - helm/install-helm-client:
+      - helm/install_helm_client:
           version: v3.8.2
 
       - run:
@@ -89,12 +90,14 @@ workflows:
   deploy-workflow:
     jobs:
       - test-chart:
+          name: test-chart
           filters:
             branches:
               ignore: main
 
-      - test-chart-main:
-          config-file: ct-main.yaml
+      - test-chart:
+          name: test-chart-main
+          args: --since=HEAD^
           filters:
             branches:
               only: main
