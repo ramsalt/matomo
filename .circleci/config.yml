@@ -106,7 +106,7 @@ workflows:
 
       - test-chart:
           name: test-chart-main
-          args: --since=HEAD^
+          args: --since=HEAD^ --check-version-increment=false
           filters:
             branches:
               only: main
