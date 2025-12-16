@@ -21,6 +21,29 @@ jobs:
       - chart-testing/lint:
           config: .circleci/<< parameters.config-file >>
 
+  publish-chart:
+    machine:
+      image: ubuntu-2004:current
+
+    steps:
+      - checkout
+
+      - helm/install-helm-client:
+          version: v3.8.2
+
+      - run:
+          name: "Package chart"
+          command: |
+            mkdir release
+            helm package charts/matomo -d release
+
+      - run:
+          name: "Publish chart"
+          command: |
+            for pkg in release/*.tgz; do
+              helm push $pkg oci://ghcr.io/ramsalt/helm-charts
+            done
+
   deploy-matomo:
     machine:
       image: ubuntu-2004:current
@@ -79,6 +102,15 @@ workflows:
       - deploy-matomo:
           context:
             - matomo
+          requires:
+            - test-chart-main
+          filters:
+            branches:
+              only: main
+
+      - publish-chart:
+          context:
+            - github
           requires:
             - test-chart-main
           filters:
