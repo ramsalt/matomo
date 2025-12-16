@@ -1,0 +1,4 @@
+# on main branch, compare chart against previous commit
+remote: origin
+target-branch: main
+since: HEAD^
