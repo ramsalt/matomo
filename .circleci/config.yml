@@ -42,7 +42,7 @@ jobs:
           name: "Publish chart"
           command: |
             for pkg in release/*.tgz; do
-              helm push $pkg oci://ghcr.io/ramsalt/helm-charts
+              helm push --username rwunderer --password "${GH_TOKEN}" $pkg oci://ghcr.io/ramsalt/helm-charts
             done
 
   deploy-matomo:
@@ -113,9 +113,6 @@ workflows:
 
       - publish-chart:
           context:
-            - github
+            - matomo
           requires:
             - test-chart-main
-          filters:
-            branches:
-              only: main
