@@ -54,6 +54,7 @@ jobs:
           name: "Publish chart"
           command: |
             for pkg in release/*.tgz; do
+              [ -f "${pkg}" ] || break
               helm push --username rwunderer --password "${GH_TOKEN}" $pkg oci://ghcr.io/ramsalt/helm-charts
             done
 
