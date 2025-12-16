@@ -26,6 +26,11 @@ jobs:
     machine:
       image: ubuntu-2004:current
 
+    parameters:
+      args:
+        type: string
+        default: ""
+
     steps:
       - checkout
 
@@ -35,8 +40,12 @@ jobs:
       - run:
           name: "Package chart"
           command: |
-            mkdir release
-            helm package charts/matomo -d release
+            mkdir -p release
+            changed=$(ct list-changed --config .ctconfig/ct.yaml << parameters.args >>)
+            for c in $changed; do
+              echo "Packing ${c}"
+              helm package "${c}" -d release
+            done
 
       - run:
           name: "Publish chart"
@@ -115,4 +124,7 @@ workflows:
           context:
             - matomo
           requires:
-            - test-chart
+            - test-chart-main
+          filters:
+            branches:
+              only: main
