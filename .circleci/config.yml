@@ -3,6 +3,57 @@
 version: 2.1
 
 jobs:
+  test-chart:
+    machine:
+      image: ubuntu-2004:current
+
+    parameters:
+      args:
+        type: string
+        default: ""
+
+    steps:
+      - checkout
+
+      - chart-testing/install-ct:
+          helm-client-version: v3.8.2
+
+      - chart-testing/lint:
+          config: .ctconfig/ct.yaml
+          extra-args: << parameters.args >>
+
+  publish-chart:
+    machine:
+      image: ubuntu-2004:current
+
+    parameters:
+      args:
+        type: string
+        default: ""
+
+    steps:
+      - checkout
+
+      - helm/install_helm_client:
+          version: v4.0.2
+
+      - run:
+          name: "Package chart"
+          command: |
+            mkdir -p release
+            changed=$(ct list-changed --config .ctconfig/ct.yaml << parameters.args >>)
+            for c in $changed; do
+              echo "Packing ${c}"
+              helm package "${c}" -d release
+            done
+
+      - run:
+          name: "Publish chart"
+          command: |
+            for pkg in release/*.tgz; do
+              helm push --username rwunderer --password "${GH_TOKEN}" $pkg oci://ghcr.io/ramsalt/helm-charts
+            done
+
   deploy-matomo:
     machine:
       image: ubuntu-2004:current
@@ -10,7 +61,7 @@ jobs:
     steps:
       - checkout
 
-      - kubernetes/install-kubectl
+      - kubernetes/install_kubectl
 
       - run:
           name: "Prepare kubeconfig"
@@ -26,8 +77,8 @@ jobs:
             echo "Using oidc token for $CIRCLE_USERNAME"
             kubectl config set-credentials circle-ci --token="$CIRCLE_OIDC_TOKEN"
 
-      - helm/install-helm-client:
-          version: v3.8.1
+      - helm/install_helm_client:
+          version: v3.8.2
 
       - run:
           name: "Prepare secrets yaml"
@@ -38,17 +89,42 @@ jobs:
           command: helm -n matomo upgrade --install matomo --values secrets.yaml --values values/matomo.yaml charts/matomo/
 
 orbs:
-  helm: circleci/helm@1.2.0
-  kubernetes: circleci/kubernetes@1.3.1
+  helm: circleci/helm@3.2.0
+  kubernetes: circleci/kubernetes@2.0.2
+  chart-testing: bjd2385/chart-testing@1.3.0
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   deploy-workflow:
     jobs:
+      - test-chart:
+          name: test-chart
+          filters:
+            branches:
+              ignore: main
+
+      - test-chart:
+          name: test-chart-main
+          args: --since=HEAD^
+          filters:
+            branches:
+              only: main
+
       - deploy-matomo:
           context:
             - matomo
+          requires:
+            - test-chart-main
+          filters:
+            branches:
+              only: main
+
+      - publish-chart:
+          context:
+            - matomo
+          requires:
+            - test-chart-main
           filters:
             branches:
               only: main

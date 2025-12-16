@@ -55,3 +55,4 @@ Thumbs.db
 
 secrets.yaml
 .envrc
+*.tgz
