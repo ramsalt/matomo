@@ -37,6 +37,9 @@ jobs:
       - helm/install_helm_client:
           version: v4.0.2
 
+      - chart-testing/install-ct:
+          helm-client-version: v3.8.2
+
       - run:
           name: "Package chart"
           command: |
