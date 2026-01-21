@@ -16,7 +16,7 @@ matomo:
   php:
     memoryLimit: "12228M"
     cliMemoryLimit: "-1"
-    maxExecutionTime: "120"
+    maxExecutionTime: "300"
     maxInputVars: "1000"
     postMaxSize: "40M"
     uploadMaxFilesize: "40M"
