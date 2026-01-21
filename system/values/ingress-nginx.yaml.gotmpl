@@ -11,6 +11,7 @@ controller:
     use-proxy-protocol: "true"
     real-ip-header: "proxy_protocol"
     use-forwarded-headers: "true"
+    proxy-read-timeout: "600"
     proxy-buffer-size: "64k"
     proxy-real-ip-cidr: "0.0.0.0/0"
     annotations-risk-level: Critical
