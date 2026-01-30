@@ -20,6 +20,9 @@ enable_trusted_host_check = ${MATOMO_ENABLE_TRUSTED_HOST_CHECK}
 salt = "4325a52bf1bc4bad5ed57c76d13aed56"
 proxy_client_headers[] = "${MATOMO_PROXY_CLIENT_HEADER}"
 proxy_host_headers[] = "${MATOMO_PROXY_HOST_HEADER}"
+proxy_scheme_headers[] = "HTTP_X_FORWARDED_PROTO"
+proxy_scheme_headers[] = "HTTP_X_FORWARDED_SCHEME"
+proxy_scheme_headers[] = "HTTP_X_URL_SCHEME"
 
 ; do not show update notification in web frontend to normal users
 show_update_notification_to_superusers_only = 1
