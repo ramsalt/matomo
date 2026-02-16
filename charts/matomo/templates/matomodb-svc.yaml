@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "matomo.fullname" . }}-db
+  name: {{ include "matomo.fullname" . }}db
   labels:
     {{- include "matomo.labels" . | nindent 4 }}
 spec:
@@ -17,9 +17,9 @@ spec:
 apiVersion: discovery.k8s.io/v1
 kind: EndpointSlice
 metadata:
-  name: {{ include "matomo.fullname" . }}-db
+  name: {{ include "matomo.fullname" . }}db
   labels:
-    kubernetes.io/service-name: matomo-db
+    kubernetes.io/service-name: matomodb
     {{- include "matomo.labels" . | nindent 4 }}
 addressType: IPv4
 ports:
