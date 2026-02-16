@@ -43,6 +43,7 @@ matomo:
     postMaxSize: "40M"
     uploadMaxFilesize: "40M"
     cliMemoryLimit: "512M"
+    fpmPm: "dynamic"
     fpmPmMaxChildren: "20"
     fpmPmMaxRequests: "5000"
     fpmPmMaxSpareServers: "3"

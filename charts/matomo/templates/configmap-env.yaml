@@ -31,6 +31,7 @@ data:
   PHP_POST_MAX_SIZE: {{ .Values.matomo.php.postMaxSize | quote }}
   PHP_UPLOAD_MAX_FILESIZE: {{ .Values.matomo.php.uploadMaxFilesize | quote }}
   PHP_CLI_MEMORY_LIMIT: {{ .Values.matomo.php.cliMemoryLimit | quote }}
+  PHP_FPM_PM: {{ .Values.matomo.php.fpmPm | quote }}
   PHP_FPM_PM_MAX_CHILDREN: {{ .Values.matomo.php.fpmPmMaxChildren | quote }}
   PHP_FPM_PM_MAX_REQUESTS: {{ .Values.matomo.php.fpmPmMaxRequests | quote }}
   PHP_FPM_PM_MAX_SPARE_SERVERS: {{ .Values.matomo.php.fpmPmMaxSpareServers | quote }}
