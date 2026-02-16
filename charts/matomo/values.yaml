@@ -14,10 +14,6 @@ databaseCaCertificate: ""
 databaseCertificate: ""
 databaseKey: ""
 
-# matomodb:
-#   ip: 192.0.2.1
-matomodb: {}
-
 matomo:
   bitnamiDebug: "false"
   host: "127.0.0.1"
@@ -29,6 +25,7 @@ matomo:
     host: ""
   database:
     host: ""
+    # ip: 192.0.2.1
     port: "3306"
     name: "matomo"
     user: "matomo"

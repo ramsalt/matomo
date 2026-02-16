@@ -7,13 +7,12 @@ image:
 imagePullSecrets:
   - name: ghcr-access-token
 
-# change this value in case of a database switch
-matomodb:
-  ip: "10.99.8.11"
 
 matomo:
   database:
     host: "matomodb.ramsalt.com"
+    # internal database ip: change this value in case of a database switch
+    ip: "10.99.8.11"
     port: "3306"
     name: "matomo"
     user: "matomo"

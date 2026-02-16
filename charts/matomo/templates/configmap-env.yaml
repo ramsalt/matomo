@@ -11,7 +11,11 @@ data:
   MATOMO_EMAIL: {{ .Values.matomo.auth.email | quote }}
   MATOMO_WEBSITE_NAME: {{ .Values.matomo.website.name | quote }}
   MATOMO_WEBSITE_HOST: {{ .Values.matomo.website.host | quote }}
+{{- if .Values.matomo.database.ip }}
+  MATOMO_DATABASE_HOST: {{ include "matomo.dbsvcname" . }}
+{{- else }}
   MATOMO_DATABASE_HOST: {{ .Values.matomo.database.host | quote }}
+{{- end }}
   MATOMO_DATABASE_PORT_NUMBER: {{ .Values.matomo.database.port | quote }}
   MATOMO_DATABASE_NAME: {{ .Values.matomo.database.name | quote }}
   MATOMO_DATABASE_USER: {{ .Values.matomo.database.user | quote }}
