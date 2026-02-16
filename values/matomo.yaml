@@ -25,7 +25,7 @@ matomo:
     uploadMaxFilesize: "40M"
     fpmPm: "static"
     fpmPmMaxChildren: "20"
-    fpmPmMaxRequests: "5000"
+    fpmPmMaxRequests: "100"
     sendmailPath: "/usr/sbin/sendmail -t"
   enableProxyUriHeader: "0"
   assumeSecureProtocol: "1"
