@@ -32,6 +32,7 @@ enable_update_communication = 0
 minimum_memory_limit_when_archiving = ${MATOMO_MEMORY_LIMIT_WHEN_ARCHIVING}
 
 enable_browser_archiving_triggering = 0
+browser_archiving_disabled_enforce = 1
 enable_sql_optimize_queries = 0
 
 action_title_category_delimiter = /
