@@ -101,6 +101,9 @@ spec:
               value: 127.0.0.1
             - name: NGINX_NO_DEFAULT_HEADERS
               value: "on"
+          {{- with .Values.nginx.extraEnv }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           securityContext:
             {{- toYaml .Values.nginx.securityContext | nindent 12 }}
           image: "{{ .Values.nginx.image.repository }}:{{ .Values.nginx.image.tag }}"
