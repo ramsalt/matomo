@@ -22,6 +22,7 @@ JsTrackerCustom:5.0.2 \
 LogViewer:5.0.5 \
 MarketingCampaignsReporting:5.1.6 \
 SearchEngineKeywordsPerformance:5.0.27 \
+Slack:5.0.4 \
 TrackingSpamPrevention:5.0.8 \
 "
 
