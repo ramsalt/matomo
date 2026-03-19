@@ -132,4 +132,6 @@ workflows:
             - test-chart-main
           filters:
             branches:
-              only: main
+              only:
+                - main
+                - feat/*
