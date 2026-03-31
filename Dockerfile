@@ -15,7 +15,7 @@ BotTracker:5.2.18 \
 CustomAlerts:5.2.5 \
 CustomReports:5.4.9 \
 CustomVariables:5.0.5 \
-FormAnalytics:5.1.3 \
+FormAnalytics:5.1.4 \
 HeatmapSessionRecording:5.3.3 \
 InvalidateReports:5.0.2 \
 JsTrackerCustom:5.0.2 \
