@@ -12,6 +12,18 @@ ssl_key = "${MATOMO_DATABASE_SSL_KEY_FILE}"
 charset = "utf8mb4"
 collation = "utf8mb4_0900_ai_ci"
 
+[database_reader]
+host = "${MATOMO_DATABASE_READER_HOST}"
+username = "${MATOMO_DATABASE_NAME}"
+password = "${MATOMO_DATABASE_PASSWORD}"
+dbname = "${MATOMO_DATABASE_NAME}"
+enable_ssl = ${MATOMO_ENABLE_DATABASE_SSL}
+ssl_ca = "${MATOMO_DATABASE_SSL_CA_FILE}"
+ssl_cert = "${MATOMO_DATABASE_SSL_CERT_FILE}"
+ssl_key = "${MATOMO_DATABASE_SSL_KEY_FILE}"
+charset = "utf8mb4"
+collation = "utf8mb4_0900_ai_ci"
+
 [General]
 force_ssl = ${MATOMO_ENABLE_FORCE_SSL}
 assume_secure_protocol = ${MATOMO_ENABLE_ASSUME_SECURE_PROTOCOL}
