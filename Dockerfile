@@ -23,6 +23,7 @@ LogViewer:5.0.5 \
 MarketingCampaignsReporting:5.1.6 \
 SearchEngineKeywordsPerformance:5.0.28 \
 Slack:5.0.4 \
+TasksTimetable:5.0.2 \
 TrackingSpamPrevention:5.0.8 \
 "
 
