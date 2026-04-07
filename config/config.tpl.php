@@ -47,6 +47,11 @@ enable_update_communication = 0
 
 minimum_memory_limit_when_archiving = ${MATOMO_MEMORY_LIMIT_WHEN_ARCHIVING}
 
+# tune down daily archiving frequency like in Matomo Cloud
+#   https://matomo.org/faq/on-premise/what-is-the-optimal-setting-for-time_before_today_archive_considered_outdated/
+enable_general_settings_admin = 0
+time_before_today_archive_considered_outdated = 21600
+
 enable_browser_archiving_triggering = 0
 browser_archiving_disabled_enforce = 1
 enable_sql_optimize_queries = 0
