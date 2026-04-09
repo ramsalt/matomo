@@ -68,6 +68,8 @@ logger_file_path = /tmp/logs/matomo.log
 [CustomReports]
 custom_reports_max_execution_time = 2700
 custom_reports_disabled_dimensions = "CoreHome.VisitLastActionDate"
+datatable_archiving_maximum_rows_custom_reports = 1000
+datatable_archiving_maximum_rows_subtable_custom_reports = 500
 
 [mail]
 transport = "smtp"
