@@ -93,6 +93,15 @@ custom_reports_disabled_dimensions = "CoreHome.VisitLastActionDate"
 datatable_archiving_maximum_rows_custom_reports = 1000
 datatable_archiving_maximum_rows_subtable_custom_reports = 500
 
+datatable_archiving_maximum_rows_custom_reports_dimensions_default = 500
+datatable_archiving_maximum_rows_subtable_custom_reports_dimensions_default = 100
+datatable_archiving_maximum_rows_custom_reports_dimensions_1 = 500
+datatable_archiving_maximum_rows_subtable_custom_reports_dimensions_1 = 100
+datatable_archiving_maximum_rows_custom_reports_dimensions_2 = 500
+datatable_archiving_maximum_rows_subtable_custom_reports_dimensions_2 = 100
+datatable_archiving_maximum_rows_custom_reports_dimensions_3 = 500
+datatable_archiving_maximum_rows_subtable_custom_reports_dimensions_3 = 100
+
 [mail]
 transport = "smtp"
 port = "25"
