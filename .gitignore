@@ -54,5 +54,6 @@ Thumbs.db
 *.crt
 
 secrets.yaml
+test-values.yaml
 .envrc
 *.tgz
