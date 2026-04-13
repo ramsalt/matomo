@@ -81,11 +81,10 @@ datatable_archiving_maximum_rows_subtable_events = 100
 datatable_archiving_maximum_rows_userid_users = 500000
 
 [log]
-log_writers[] = "errorlog"
 log_writers[] = "file"
 log_writers[] = "screen"
 ; log_level = INFO
-logger_file_path = /tmp/logs/matomo.log
+logger_file_path = tmp/logs/matomo.log
 
 [CustomReports]
 custom_reports_max_execution_time = 2700
