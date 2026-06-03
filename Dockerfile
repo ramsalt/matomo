@@ -13,7 +13,7 @@ ARG PLUGIN_LIST=" \
 AdvertisingConversionExport:5.3.7 \
 BotTracker:5.2.18 \
 CustomAlerts:5.3.0 \
-CustomReports:5.4.12 \
+CustomReports:5.4.10 \
 CustomVariables:5.0.6 \
 FormAnalytics:5.2.1 \
 HeatmapSessionRecording:5.4.0 \
