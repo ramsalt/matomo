@@ -12,10 +12,10 @@ ARG LICENSE_KEY
 ARG PLUGIN_LIST=" \
 AdvertisingConversionExport:5.3.7 \
 BotTracker:5.2.18 \
-CustomAlerts:5.3.0 \
+CustomAlerts:5.3.1 \
 CustomReports:5.4.3 \
 CustomVariables:5.0.6 \
-FormAnalytics:5.2.1 \
+FormAnalytics:5.2.2 \
 HeatmapSessionRecording:5.4.0 \
 InvalidateReports:5.0.2 \
 JsTrackerCustom:5.0.2 \
