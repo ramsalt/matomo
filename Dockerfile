@@ -20,7 +20,7 @@ HeatmapSessionRecording:5.4.0 \
 InvalidateReports:5.0.2 \
 JsTrackerCustom:5.0.2 \
 LogViewer:5.0.6 \
-MarketingCampaignsReporting:5.2.1 \
+MarketingCampaignsReporting:5.2.2 \
 SearchEngineKeywordsPerformance:5.0.29 \
 Slack:5.0.4 \
 TasksTimetable:5.0.2 \
