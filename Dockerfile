@@ -16,17 +16,17 @@ CustomAlerts:5.3.2 \
 CustomReports:5.4.13 \
 CustomVariables:5.0.6 \
 FormAnalytics:5.3.0 \
-HeatmapSessionRecording:5.5.0 \
+HeatmapSessionRecording:5.5.3 \
 InvalidateReports:5.0.2 \
 JsTrackerCustom:5.0.2 \
 LogViewer:5.0.6 \
 MarketingCampaignsReporting:5.2.2 \
 McpServer:5.0.4 \
-OAuth2:5.1.1 \
-SearchEngineKeywordsPerformance:5.0.30 \
-Slack:5.0.4 \
+OAuth2:5.2.3 \
+SearchEngineKeywordsPerformance:5.1.1 \
+Slack:5.1.0 \
 TasksTimetable:5.0.2 \
-TrackingSpamPrevention:5.0.10 \
+TrackingSpamPrevention:5.0.11 \
 "
 
 WORKDIR /usr/src/matomo-plugins
