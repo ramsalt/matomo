@@ -36,7 +36,8 @@ RUN set -e && \
         curl -f -sS --output $PLUGIN_NAME.zip --data "access_token=$LICENSE_KEY" "https://plugins.matomo.org/api/2.0/plugins/$PLUGIN_NAME/download/${PLUGIN_VERSION:-latest}?matomo=$MATOMO_VERSION" && \
         unzip $PLUGIN_NAME.zip && \
         rm $PLUGIN_NAME.zip || exit 1; \
-    done
+    done && \
+    chmod -R a+r /usr/src/matomo-plugins
 
 WORKDIR /var/www/html
 COPY --chown=wodby:wodby config /usr/src/matomo-config
