@@ -41,6 +41,21 @@ activate_plugin() {
     }
 }
 
+update_database() {
+    echo Running database upgrades if necessary
+    ./console core:update --yes || {
+        echo
+        echo "************************************************************"
+        echo "Couldn't run database updates. See errors above for details."
+        echo
+        echo "Aborting!"
+        echo "************************************************************"
+        echo
+
+        exit 1
+    }
+}
+
 # Create matomo config
 envsubst < "/usr/src/matomo-config/config.tpl.php" > "${APP_ROOT}/config/config.ini.php"
 
@@ -66,6 +81,7 @@ chgrp -R www-data "${APP_ROOT}/plugins"
 # Activate plugins
 PLUGINS="TagManager $(find /usr/src/matomo-plugins/* -maxdepth 0 -type d -printf "%f ")"
 activate_plugin $PLUGINS
+update_database
 
 # Fix permissions for tag manager (again)
 chown -R wodby:www-data "${APP_ROOT}/js"
