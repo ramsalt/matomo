@@ -10,23 +10,23 @@ RUN apk add --no-cache gettext
 
 ARG LICENSE_KEY
 ARG PLUGIN_LIST=" \
-AdvertisingConversionExport:5.4.3 \
+AdvertisingConversionExport:5.4.4 \
 BotTracker:5.2.18 \
 CustomAlerts:5.3.3 \
 CustomReports:5.6.1 \
 CustomVariables:5.0.6 \
-FormAnalytics:5.4.1 \
-HeatmapSessionRecording:5.7.5 \
+FormAnalytics:5.4.2 \
+HeatmapSessionRecording:5.7.6 \
 InvalidateReports:5.0.2 \
-JsTrackerCustom:5.0.3 \
+JsTrackerCustom:5.0.4 \
 LogViewer:5.0.6 \
-MarketingCampaignsReporting:5.2.2 \
+MarketingCampaignsReporting:5.2.3 \
 McpServer:5.1.1 \
 OAuth2:5.3.3 \
-SearchEngineKeywordsPerformance:5.2.5 \
+SearchEngineKeywordsPerformance:5.2.7 \
 Slack:5.1.0 \
 TasksTimetable:5.0.2 \
-TrackingSpamPrevention:5.2.0 \
+TrackingSpamPrevention:5.2.1 \
 "
 
 WORKDIR /usr/src/matomo-plugins
