@@ -24,6 +24,21 @@ export MATOMO_ENABLE_TRUSTED_HOST_CHECK="${MATOMO_ENABLE_TRUSTED_HOST_CHECK:-1}"
 export MATOMO_PROXY_CLIENT_HEADER="${MATOMO_PROXY_CLIENT_HEADER:-}"
 export MATOMO_PROXY_HOST_HEADER="${MATOMO_PROXY_HOST_HEADER:-}"
 
+clear_cache() {
+    echo Clearing cache
+    ./console cache:clear || {
+        echo
+        echo "************************************************************"
+        echo "Couldn't clear the cache prior to updating!"
+        echo
+        echo "Aborting!"
+        echo "************************************************************"
+        echo
+
+        exit 1
+    }
+}
+
 activate_plugin() {
     local PLUGINS="$@"
 
@@ -80,6 +95,7 @@ chgrp -R www-data "${APP_ROOT}/plugins"
 
 # Activate plugins
 PLUGINS="TagManager $(find /usr/src/matomo-plugins/* -maxdepth 0 -type d -printf "%f ")"
+clear_cache
 activate_plugin $PLUGINS
 update_database
 
