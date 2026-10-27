@@ -22,7 +22,7 @@ JsTrackerCustom:5.0.4 \
 LogViewer:5.0.6 \
 MarketingCampaignsReporting:5.2.3 \
 McpServer:5.1.1 \
-OAuth2:5.3.3 \
+OAuth2:5.3.4 \
 SearchEngineKeywordsPerformance:5.2.7 \
 Slack:5.1.0 \
 TasksTimetable:5.0.2 \
